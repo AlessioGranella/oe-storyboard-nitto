@@ -125,7 +125,7 @@ h1{font-family:var(--serif);font-weight:400;font-size:clamp(34px,4.4vw,60px);lin
     radial-gradient(120% 70% at 50% 60%, var(--bluette-800) 0%, var(--bluette-900) 55%, var(--bluette-950) 100%);
   border:1px solid var(--black);
 }
-.frame .sk{position:absolute;inset:0;width:100%;height:100%;display:block;z-index:0}
+.frame .sk,.frame video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block;z-index:0}
 .sk .ln{fill:none;stroke:var(--bluette-050);stroke-opacity:.42;stroke-width:3}
 .sk .ln2{fill:none;stroke:var(--bluette-050);stroke-opacity:.22;stroke-width:2}
 .sk .fl{fill:var(--bluette-700);fill-opacity:.55}
@@ -335,23 +335,13 @@ footer .fine{
 <main class="board">
   <div class="wrap">
     <h2>Scena per scena</h2>
-    <p class="lead">I frame sono schizzi: il girato non è ancora generato. Testi, misure, colori e loghi sono invece quelli del montato, in scala sul quadro 1080×1920.</p>
+    <p class="lead">Nei frame girano le clip generate, già in duotone Bluette con la sola pallina a colori. Testi e loghi sono sovrapposti in pagina con le misure del montato, in scala sul quadro 1080×1920: il video montato arriva al passo successivo.</p>
     <div class="grid anim" id="grid">
 
       <!-- ============ 1 · APERTURA ============ -->
       <article class="beat">
         <div class="frame">
-          <svg class="sk" viewBox="0 0 1080 1920" aria-hidden="true">
-            <path class="fd" d="M0 1380 L1080 1320 L1080 1920 L0 1920 Z"/>
-            <path class="ln2" d="M0 1380 L1080 1320"/>
-            <!-- mano dall'alto, palmo verso il basso -->
-            <path class="fl" d="M380 0 L380 300 Q380 380 450 400 L640 400 Q700 390 700 330 L700 0 Z"/>
-            <path class="ln" d="M380 0 L380 300 Q380 380 450 400 L640 400 Q700 390 700 330 L700 0"/>
-            <path class="ln2" d="M450 400 L450 440 M510 400 L510 452 M570 400 L570 452 M630 400 L630 440"/>
-            <path class="mv" d="M540 520 L540 1290"/>
-            <ellipse class="ln2" cx="540" cy="1340" rx="90" ry="16"/>
-            <g class="bnc"><circle class="ball" cx="540" cy="1290" r="52"/></g>
-          </svg>
+          <video src="out/scene/s1.mp4" poster="out/scene/s1.jpg" muted loop playsinline preload="none" aria-label="Mano che spinge la pallina verso il pavimento"></video>
           <div class="veil"></div>
           <div class="blk"><h3 class="title">Nitto ATP Finals 2026<span class="d">— impatto</span></h3></div>
           <div class="fix">
@@ -363,7 +353,7 @@ footer .fine{
           <div class="safe"></div>
         </div>
         <div class="info">
-          <p class="idx">Scena 01 · Apertura <span class="chip">Da generare</span></p>
+          <p class="idx">Scena 01 · Apertura <span class="chip">Clip AI</span></p>
           <dl>
             <div><dt>On-screen</dt><dd>«Nitto ATP Finals 2026 — impatto», per 1 secondo · loghi fissi in basso da qui alla fine</dd></div>
             <div><dt>Visivo</dt><dd class="prompt">Dall’alto entra una mano che spinge la pallina gialla verso il basso. La pallina rimbalza sul pavimento, esce dall’inquadratura e torna sulla mano. La camera ruota piano attorno alla mano, mai ferma. Duotone Bluette da qui alla fine, la pallina resta gialla.</dd></div>
@@ -376,13 +366,7 @@ footer .fine{
       <!-- ============ 2 · KPI 1 TELESPETTATORI ============ -->
       <article class="beat">
         <div class="frame">
-          <svg class="sk" viewBox="0 0 1080 1920" aria-hidden="true">
-            <path class="fl" d="M0 1180 L1080 1100 L1080 1920 L0 1920 Z"/>
-            <path class="ln" d="M0 1520 L1080 1400 M180 1920 L460 1120 M880 1920 L700 1110"/>
-            <ellipse class="ln2" cx="560" cy="1440" rx="150" ry="24"/>
-            <path class="mv" d="M380 1380 Q420 1420 470 1440 M740 1380 Q700 1420 650 1440"/>
-            <g class="bnc"><circle class="ball" cx="560" cy="1380" r="60"/></g>
-          </svg>
+          <video src="out/scene/s2.mp4" poster="out/scene/s2.jpg" muted loop playsinline preload="none" aria-label="Pallina che rimbalza a filo del pavimento"></video>
           <div class="veil"></div>
           <div class="blk">
             <p class="lab">Telespettatori in Italia</p>
@@ -398,7 +382,7 @@ footer .fine{
           <div class="safe"></div>
         </div>
         <div class="info">
-          <p class="idx">Scena 02 · KPI 1 <span class="chip">Da generare</span></p>
+          <p class="idx">Scena 02 · KPI 1 <span class="chip">Clip AI</span></p>
           <dl>
             <div><dt>On-screen</dt><dd>TELESPETTATORI IN ITALIA · <strong>29 mln</strong> · 91% in diretta</dd></div>
             <div><dt>Visivo</dt><dd class="prompt">Secondo rimbalzo, ripreso basso, quasi a filo del pavimento: la pallina schiaccia e riparte. Il KPI entra con lo zoom verso la camera sul fotogramma del contatto.</dd></div>
@@ -411,18 +395,7 @@ footer .fine{
       <!-- ============ 3 · KPI 2 SROI ============ -->
       <article class="beat">
         <div class="frame">
-          <svg class="sk" viewBox="0 0 1080 1920" aria-hidden="true">
-            <!-- campo visto dall'alto -->
-            <path class="fl" d="M140 0 L940 0 L940 1920 L140 1920 Z"/>
-            <path class="ln" d="M140 0 V1920 M940 0 V1920 M240 0 V1920 M840 0 V1920 M240 1180 H840 M540 1180 V1920 M140 1620 H940"/>
-            <!-- giocatore 1 dall'alto: capelli neri, spalle, racchetta alzata -->
-            <ellipse class="fd" cx="520" cy="1700" rx="120" ry="58"/>
-            <circle class="hairD" cx="520" cy="1700" r="44"/>
-            <path class="ln" d="M600 1670 L720 1520"/>
-            <ellipse class="ln" cx="750" cy="1470" rx="56" ry="74" transform="rotate(30 750 1470)"/>
-            <path class="mv" d="M790 1380 L700 1240"/>
-            <g class="bnc"><circle class="ball" cx="800" cy="1370" r="34"/></g>
-          </svg>
+          <video src="out/scene/s3.mp4" poster="out/scene/s3.jpg" muted loop playsinline preload="none" aria-label="Battuta vista dall'alto"></video>
           <div class="veil"></div>
           <div class="blk">
             <p class="lab">SROI ex ante</p>
@@ -438,7 +411,7 @@ footer .fine{
           <div class="safe"></div>
         </div>
         <div class="info">
-          <p class="idx">Scena 03 · KPI 2 <span class="chip">Da generare</span></p>
+          <p class="idx">Scena 03 · KPI 2 <span class="chip">Clip AI</span></p>
           <dl>
             <div><dt>On-screen</dt><dd>SROI EX ANTE · <strong>4,87</strong> · valore sociale per ogni euro investito</dd></div>
             <div><dt>Visivo</dt><dd class="prompt">Battuta del giocatore 1, capelli neri, inquadratura zenitale: dall’alto si vedono testa, spalle e racchetta, mai il volto. La camera ruota lenta sull’asse verticale. Lo SROI entra sull’impatto della racchetta.</dd></div>
@@ -451,15 +424,7 @@ footer .fine{
       <!-- ============ 4 · KPI 3 BENEFICI SOCIALI ============ -->
       <article class="beat">
         <div class="frame">
-          <svg class="sk" viewBox="0 0 1080 1920" aria-hidden="true">
-            <path class="fd" d="M0 1600 L1080 1600 L1080 1920 L0 1920 Z"/>
-            <!-- rete in primo piano: nastro e maglie -->
-            <path class="ln" d="M-20 1480 L1100 1450" style="stroke-width:16;stroke-opacity:.6"/>
-            <path class="ln2" d="M0 1490 V1920 M90 1488 V1920 M180 1486 V1920 M270 1483 V1920 M360 1481 V1920 M450 1478 V1920 M540 1476 V1920 M630 1473 V1920 M720 1471 V1920 M810 1468 V1920 M900 1466 V1920 M990 1463 V1920 M0 1580 H1080 M0 1670 H1080 M0 1760 H1080 M0 1850 H1080"/>
-            <path class="mv" d="M120 1200 Q400 1360 560 1440"/>
-            <circle class="ball" cx="600" cy="1418" r="46"/>
-            <path class="ln" d="M600 1350 V1300 M650 1362 L680 1330 M550 1362 L520 1330" style="stroke:#D8F23A;stroke-opacity:.7"/>
-          </svg>
+          <video src="out/scene/s4.mp4" poster="out/scene/s4.jpg" muted loop playsinline preload="none" aria-label="Pallina sul nastro della rete"></video>
           <div class="veil"></div>
           <div class="blk">
             <p class="lab">Benefici sociali</p>
@@ -476,7 +441,7 @@ footer .fine{
           <div class="safe"></div>
         </div>
         <div class="info">
-          <p class="idx">Scena 04 · KPI 3 <span class="chip">Da generare</span></p>
+          <p class="idx">Scena 04 · KPI 3 <span class="chip">Clip AI</span></p>
           <dl>
             <div><dt>On-screen</dt><dd>BENEFICI SOCIALI · <strong>415,7 mln €</strong> · <strong>+7,7% sul 2025</strong> in Lime, a misura intermedia · valore sociale stimato</dd></div>
             <div><dt>Visivo</dt><dd class="prompt">Rimbalzo e pallina che colpisce il nastro della rete, ripresa di lato a filo del nastro, in leggero ralenti. I benefici entrano sul contatto; il +7,7% arriva un istante dopo il numero, come secondo elemento.</dd></div>
@@ -489,18 +454,7 @@ footer .fine{
       <!-- ============ 5 · KPI 4 PRATICANTI ============ -->
       <article class="beat">
         <div class="frame">
-          <svg class="sk" viewBox="0 0 1080 1920" aria-hidden="true">
-            <!-- giocatore 2 di schiena in controluce, capelli biondi, smash -->
-            <radialGradient id="cl" cx="50%" cy="22%" r="60%"><stop offset="0" stop-color="#EFE5FF" stop-opacity=".35"/><stop offset="1" stop-color="#EFE5FF" stop-opacity="0"/></radialGradient>
-            <rect width="1080" height="1920" fill="url(#cl)"/>
-            <path class="fd" d="M300 1920 L330 1760 Q350 1600 470 1560 L640 1560 Q760 1600 780 1760 L800 1920 Z"/>
-            <circle class="hairB" cx="555" cy="1470" r="96"/>
-            <path d="M700 1600 L860 1240 L900 1120" style="stroke:#13012F;stroke-width:60;stroke-linecap:round;fill:none"/>
-            <path class="ln" d="M900 1120 L950 900"/>
-            <ellipse class="ln" cx="965" cy="810" rx="70" ry="96" transform="rotate(12 965 810)"/>
-            <path class="mv" d="M990 300 L1050 80"/>
-            <circle class="ball" cx="975" cy="340" r="38"/>
-          </svg>
+          <video src="out/scene/s5.mp4" poster="out/scene/s5.jpg" muted loop playsinline preload="none" aria-label="Smash di schiena in controluce"></video>
           <div class="veil"></div>
           <div class="blk">
             <p class="lab">Nuovi praticanti persistenti</p>
@@ -517,7 +471,7 @@ footer .fine{
           <div class="safe"></div>
         </div>
         <div class="info">
-          <p class="idx">Scena 05 · KPI 4 · picco <span class="chip">Da generare</span></p>
+          <p class="idx">Scena 05 · KPI 4 · picco <span class="chip">Clip AI</span></p>
           <dl>
             <div><dt>On-screen</dt><dd>NUOVI PRATICANTI PERSISTENTI · <strong>2.600</strong> · giocatori continuativi · secondo dato, più piccolo ma ben visibile: <strong>376</strong> di cui da Racchette in classe</dd></div>
             <div><dt>Visivo</dt><dd class="prompt">Smash del giocatore 2, capelli biondi, ripreso di schiena e in controluce, dal basso: il braccio e la racchetta salgono verso le luci. È il picco del crescendo: la camera sale insieme al colpo.</dd></div>
@@ -531,18 +485,7 @@ footer .fine{
       <!-- ============ 6 · KPI 5 ESG ============ -->
       <article class="beat">
         <div class="frame">
-          <svg class="sk" viewBox="0 0 1080 1920" aria-hidden="true">
-            <defs><circle id="b" r="40" fill="#D8F23A"/></defs>
-            <g opacity=".8">
-              <use href="#b" x="140" y="1700"/><use href="#b" x="220" y="1700"/><use href="#b" x="300" y="1700"/><use href="#b" x="380" y="1700"/><use href="#b" x="460" y="1700"/><use href="#b" x="540" y="1700"/><use href="#b" x="620" y="1700"/><use href="#b" x="700" y="1700"/><use href="#b" x="780" y="1700"/><use href="#b" x="860" y="1700"/><use href="#b" x="940" y="1700"/>
-              <use href="#b" x="220" y="1632"/><use href="#b" x="300" y="1632"/><use href="#b" x="380" y="1632"/><use href="#b" x="460" y="1632"/><use href="#b" x="540" y="1632"/><use href="#b" x="620" y="1632"/><use href="#b" x="700" y="1632"/><use href="#b" x="780" y="1632"/><use href="#b" x="860" y="1632"/>
-              <use href="#b" x="300" y="1564"/><use href="#b" x="380" y="1564"/><use href="#b" x="460" y="1564"/><use href="#b" x="540" y="1564"/><use href="#b" x="620" y="1564"/><use href="#b" x="700" y="1564"/><use href="#b" x="780" y="1564"/>
-              <use href="#b" x="380" y="1496"/><use href="#b" x="460" y="1496"/><use href="#b" x="540" y="1496"/><use href="#b" x="620" y="1496"/><use href="#b" x="700" y="1496"/>
-              <use href="#b" x="460" y="1428"/><use href="#b" x="540" y="1428"/><use href="#b" x="620" y="1428"/>
-            </g>
-            <path class="mv" d="M540 300 L540 1340"/>
-            <g class="fall"><circle class="ball" cx="540" cy="1360" r="40"/></g>
-          </svg>
+          <video src="out/scene/s6.mp4" poster="out/scene/s6.jpg" muted loop playsinline preload="none" aria-label="Pallina che cade sulla montagna di palline"></video>
           <div class="veil"></div>
           <div class="blk">
             <p class="lab">ESG score</p>
@@ -558,7 +501,7 @@ footer .fine{
           <div class="safe"></div>
         </div>
         <div class="info">
-          <p class="idx">Scena 06 · KPI 5 <span class="chip">Da generare</span></p>
+          <p class="idx">Scena 06 · KPI 5 <span class="chip">Clip AI</span></p>
           <dl>
             <div><dt>On-screen</dt><dd>ESG SCORE · <strong>89,75 | AA+</strong> · rating complessivo ponderato</dd></div>
             <div><dt>Visivo</dt><dd class="prompt">Una pallina cade dall’alto sulla cima di una montagna di palline gialle e fa l’ultimo flop. La camera si allarga lenta e mostra tutta la montagna.</dd></div>
@@ -572,19 +515,7 @@ footer .fine{
       <!-- ============ 7 · CHIUSURA ============ -->
       <article class="beat">
         <div class="frame">
-          <svg class="sk" viewBox="0 0 1080 1920" aria-hidden="true">
-            <g opacity=".75">
-              <circle class="ball crumble" cx="160" cy="1690" r="40" style="--dx:-80px;--dy:260px;--r:-50deg"/>
-              <circle class="ball crumble" cx="300" cy="1650" r="40" style="--dx:-40px;--dy:300px"/>
-              <circle class="ball crumble" cx="420" cy="1560" r="40" style="--dx:-60px;--dy:380px;--r:-30deg"/>
-              <circle class="ball crumble" cx="540" cy="1470" r="40" style="--dx:10px;--dy:460px"/>
-              <circle class="ball crumble" cx="660" cy="1560" r="40" style="--dx:70px;--dy:380px"/>
-              <circle class="ball crumble" cx="780" cy="1650" r="40" style="--dx:50px;--dy:300px;--r:60deg"/>
-              <circle class="ball crumble" cx="920" cy="1690" r="40" style="--dx:90px;--dy:260px"/>
-              <circle class="ball crumble" cx="480" cy="1640" r="40" style="--dx:-20px;--dy:320px"/>
-              <circle class="ball crumble" cx="600" cy="1640" r="40" style="--dx:30px;--dy:320px"/>
-            </g>
-          </svg>
+          <video src="out/scene/s7.mp4" poster="out/scene/s7.jpg" muted loop playsinline preload="none" aria-label="La montagna di palline si sgretola"></video>
           <div class="end">
             <img src="assets/loghi/oe-logo-white.svg" alt="OpenEconomics">
             <p class="tag">We measure what really matters</p>
@@ -594,7 +525,7 @@ footer .fine{
           <div class="safe"></div>
         </div>
         <div class="info">
-          <p class="idx">Scena 07 · Chiusura <span class="chip">Da generare</span> <span class="chip keep">Codino OE</span></p>
+          <p class="idx">Scena 07 · Chiusura <span class="chip">Clip AI</span> <span class="chip keep">Codino OE</span></p>
           <dl>
             <div><dt>On-screen</dt><dd>Logo OpenEconomics esteso · payoff «We measure what really matters» · in basso la riga di riferimento allo studio</dd></div>
             <div><dt>Visivo</dt><dd class="prompt">La montagna di palline si sgretola e rotola fuori dal quadro. Le immagini sfumano su Bluette 900 pieno e il logo si stampa al centro; il payoff entra mezzo secondo dopo.</dd></div>
@@ -619,7 +550,7 @@ footer .fine{
       <li><strong>Trattamento</strong>: duotone Bluette come il tennis, ombre su Bluette 900 e luci verso il lilla; righe del campo e rete in Bluette 050. La pallina è l’unica cosa a colori pieni, nessun altro colore caldo.</li>
       <li><strong>Giocatori non riconoscibili</strong>: uno con capelli neri ripreso dall’alto, uno biondo di schiena in controluce. Nessun volto, nessun giocatore reale, nessun marchio sull’abbigliamento o sulla rete.</li>
       <li><strong>Elementi fissi</strong>: monogramma OE in basso a sinistra, FITP e Nitto ATP Finals affiancati in basso a destra, a 250 px dal bordo. Sotto, in piccolo, «Stime ex ante» su tutte le scene.</li>
-      <li>Il girato è da generare con AI: sei clip Seedance 2.5 da 5 s, poi tagliate ai tempi. I prompt sono una prima stesura.</li>
+      <li><strong>Girato generato con AI</strong> (Magnific, Seedance 2.5): sette clip da 5 s, una per scena, 9:16, con suono nativo e senza musica; vanno tagliate ai tempi delle scene. Anteprime a 608×1080, gli originali sono nella cartella «Nitto ATP Finals 2026» del progetto OpenEconomics su Magnific. Il duotone delle anteprime viene da <code>anteprime.sh</code>.</li>
     </ul>
 
     <h2>Da decidere prima del montaggio</h2>
@@ -630,7 +561,7 @@ footer .fine{
       <li><strong>Dicitura «stima»</strong>: qui è un testo fisso in basso, «Stime ex ante». In alternativa può stare solo nell’ultima scena.</li>
       <li><strong>Suono finale</strong>: proposto il silenzio breve sul logo. Il brief chiede anche 4–5 s di silenzio oltre il video, per un totale di circa 22 s, ma la durata massima è 20 s: va scelto uno dei due.</li>
       <li><strong>Bollino AI</strong>: nel reference il segno in alto a sinistra è il nostro bollino di dichiarazione AI, non la filigrana di un tool. Il brief chiede di toglierlo, ma il girato sarà di nuovo generato con AI: confermare se va omesso.</li>
-      <li><strong>Immagini AI</strong>: nessuna clip è stata ancora generata. Si parte solo col via libera.</li>
+      <li><strong>Clip da rivedere</strong>: nella scena 2 la pallina si avvicina alla camera ma il contatto col pavimento non si vede bene; nella scena 5 il colpo somiglia più a una battuta che a uno smash. Si possono rigenerare.</li>
     </ul>
     <p class="fine">OpenEconomics · Bluette #4400B3 · Lime #B9FF69 · Hedvig Letters Serif + Atkinson Hyperlegible</p>
   </div>
@@ -639,8 +570,29 @@ footer .fine{
 document.getElementById('safeToggle').addEventListener('change', function(e){
   document.getElementById('grid').classList.toggle('show-safe', e.target.checked);
 });
+var animOn = true;
+var videos = Array.prototype.slice.call(document.querySelectorAll('.frame video'));
+var io = new IntersectionObserver(function(entries){
+  entries.forEach(function(entry){
+    var v = entry.target;
+    if (entry.isIntersecting && animOn){
+      if (v.preload === 'none'){ v.preload = 'auto'; v.load(); }
+      v.play().catch(function(){});
+    } else { v.pause(); }
+  });
+}, { rootMargin: '100px', threshold: 0.25 });
+videos.forEach(function(v){ io.observe(v); });
 document.getElementById('animToggle').addEventListener('change', function(e){
-  document.getElementById('grid').classList.toggle('anim', e.target.checked);
+  animOn = e.target.checked;
+  document.getElementById('grid').classList.toggle('anim', animOn);
+  videos.forEach(function(v){
+    if (!animOn){ v.pause(); v.currentTime = 0; return; }
+    var r = v.getBoundingClientRect();
+    if (r.top < innerHeight && r.bottom > 0){
+      if (v.preload === 'none'){ v.preload = 'auto'; v.load(); }
+      v.play().catch(function(){});
+    }
+  });
 });
 </script>
 
