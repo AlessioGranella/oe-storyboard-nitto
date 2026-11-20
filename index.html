@@ -166,6 +166,7 @@ h1{font-family:var(--serif);font-weight:400;font-size:clamp(34px,4.4vw,60px);lin
 .end{position:absolute;inset:0;z-index:2;display:flex;flex-direction:column;align-items:center;justify-content:center}
 .end img{width:64.8cqw;height:auto;display:block}
 .end .tag{font-family:var(--serif);font-size:5.6cqw;line-height:1.15;color:var(--white);margin-top:5.2cqw}
+.end-ref{position:absolute;left:8.9cqw;right:8.9cqw;bottom:11.1cqw;z-index:3;font-family:var(--mono);font-size:2.6cqw;line-height:1.4;letter-spacing:.02em;color:rgba(255,255,255,.78)}
 
 /* timecode */
 .layer{position:absolute;inset:0;z-index:4;padding:4.6cqw 5cqw;pointer-events:none}
@@ -298,14 +299,15 @@ footer .fine{
   <div class="wrap">
     <h2 id="tl-h">Tempi e colpi</h2>
     <!-- larghezze in proporzione ai secondi su 18,5 -->
-    <div class="tl" role="img" aria-label="Linea dei tempi: apertura 0–2 s, cinque KPI da 2,5 s ciascuno fino a 14,5 s, chiusura fino a 18,5 s. Un colpo all'inizio di ogni KPI.">
+    <div class="tl" role="img" aria-label="Linea dei tempi: apertura 0–2 s, cinque KPI da 2,5 s ciascuno fino a 14,5 s, sgretolamento fino a 16 s, logo OpenEconomics fino a 18,5 s. Un colpo all'inizio di ogni KPI.">
       <div class="seg" style="flex:2"><b>0–2</b><span>Apertura</span></div>
       <div class="seg k" style="flex:2.5"><b>2–4,5</b><span>Telespettatori</span></div>
       <div class="seg k" style="flex:2.5"><b>4,5–7</b><span>SROI</span></div>
       <div class="seg k" style="flex:2.5"><b>7–9,5</b><span>Benefici sociali</span></div>
       <div class="seg k" style="flex:2.5"><b>9,5–12</b><span>Praticanti</span></div>
       <div class="seg k" style="flex:2.5"><b>12–14,5</b><span>ESG</span></div>
-      <div class="seg end" style="flex:4"><b>14,5–18,5</b><span>Chiusura</span></div>
+      <div class="seg k" style="flex:1.5"><b>14,5–16</b><span>Sgretola</span></div>
+      <div class="seg end" style="flex:2.5"><b>16–18,5</b><span>Logo OE</span></div>
       <i class="hit" style="left:calc(2/18.5*100%)"></i>
       <i class="hit" style="left:calc(4.5/18.5*100%)"></i>
       <i class="hit" style="left:calc(7/18.5*100%)"></i>
@@ -513,26 +515,47 @@ footer .fine{
         </div>
       </article>
 
-      <!-- ============ 7 · CHIUSURA ============ -->
+      <!-- ============ 7 · SGRETOLAMENTO ============ -->
       <article class="beat">
         <div class="frame">
           <video src="out/scene/s7.mp4" poster="out/scene/s7.jpg" muted loop playsinline preload="none" aria-label="La montagna di palline si sgretola"></video>
+          <div class="fix">
+            <svg class="mono" viewBox="0 0 80 81" aria-label="OpenEconomics"><path d="M39.8 0C17.8 0 0 17.9 0 40c0 22.1 17.8 40.1 39.8 40.1 22 0 39.8-17.9 39.8-40.1C79.6 17.9 61.8 0 39.8 0Zm23.5 63.7h-47V16.4h47v47.3Z" fill="currentColor"/></svg>
+            <div class="lg"><img class="fitp" src="assets/loghi/fitp.png" alt="FITP"><img class="nitto" src="assets/loghi/nitto-atp-finals-white.png" alt="Nitto ATP Finals"></div>
+          </div>
+          <p class="stima">Stime ex ante</p>
+          <div class="layer"><span class="tc">0:14,5 – 0:16</span></div>
+          <div class="safe"></div>
+        </div>
+        <div class="info">
+          <p class="idx">Scena 07 · Sgretolamento <span class="chip">Clip AI</span></p>
+          <dl>
+            <div><dt>On-screen</dt><dd>Nessun dato: restano solo i loghi fissi in basso</dd></div>
+            <div><dt>Visivo</dt><dd class="prompt">La montagna di palline si sgretola e rotola fuori dal quadro. Sul finire le immagini sfumano su Bluette 900 pieno, per lasciare il fondo pulito al logo.</dd></div>
+            <div><dt>Audio</dt><dd class="prompt">Rotolio delle palline; il tappeto arriva al culmine e si chiude qui.</dd></div>
+            <div><dt>Prompt</dt><dd class="prompt">Seedance 2.5, 5 s, 9:16: «A large heap of bright yellow tennis balls piled on the dark court floor collapses: the balls tumble and roll out of frame in every direction, slow motion…»</dd></div>
+          </dl>
+        </div>
+      </article>
+
+      <!-- ============ 8 · CODINO ============ -->
+      <article class="beat">
+        <div class="frame" style="background:var(--bluette-900)">
           <div class="end">
             <img src="assets/loghi/oe-logo-white.svg" alt="OpenEconomics">
             <p class="tag">We measure what really matters</p>
           </div>
-          <p class="stima">Stime ex ante · Nitto ATP Finals 2026</p>
-          <div class="layer"><span class="tc">0:14,5 – 0:18,5</span></div>
+          <p class="end-ref">Nitto ATP Finals 2026<br>Studio ex ante · stime</p>
+          <div class="layer"><span class="tc">0:16 – 0:18,5</span></div>
           <div class="safe"></div>
         </div>
         <div class="info">
-          <p class="idx">Scena 07 · Chiusura <span class="chip">Clip AI</span> <span class="chip keep">Codino OE</span></p>
+          <p class="idx">Scena 08 · Chiusura <span class="chip keep">Codino OE</span></p>
           <dl>
-            <div><dt>On-screen</dt><dd>Logo OpenEconomics esteso · payoff «We measure what really matters» · in basso la riga di riferimento allo studio</dd></div>
-            <div><dt>Visivo</dt><dd class="prompt">La montagna di palline si sgretola e rotola fuori dal quadro. Le immagini sfumano su Bluette 900 pieno e il logo si stampa al centro; il payoff entra mezzo secondo dopo.</dd></div>
-            <div><dt>Audio</dt><dd class="prompt">Il tappeto si chiude sullo sgretolamento, poi silenzio breve sul logo (preferenza del brief).</dd></div>
-            <div><dt>Prompt</dt><dd class="prompt">Seedance 2.5, 5 s, 9:16: «A large pile of yellow tennis balls on a dark indoor court collapses and the balls roll out of frame in every direction, slow motion, camera static then slowly pushing in on the empty floor.»</dd></div>
-            <div><dt>Nota</dt><dd class="note">Il codino è quello fisso di tutti i video OE. I loghi FITP e Nitto qui lasciano il posto al logo OE; restano solo nella riga in basso se si vuole.</dd></div>
+            <div><dt>On-screen</dt><dd>Logo OpenEconomics esteso al centro · sotto «We measure what really matters» · in basso a sinistra la riga del video: Nitto ATP Finals 2026, studio ex ante</dd></div>
+            <div><dt>Visivo</dt><dd class="prompt">Bluette 900 pieno, senza girato. Il logo si stampa al centro rientrando dall’alto; il payoff entra mezzo secondo dopo, la riga del video subito dopo.</dd></div>
+            <div><dt>Audio</dt><dd class="prompt">Silenzio breve sul logo (preferenza del brief).</dd></div>
+            <div><dt>Nota</dt><dd class="note">È il codino fisso di tutti i video OE, identico all’APA: logo largo 700 px su 1080, payoff in Hedvig 60 px, riga del video in Atkinson Mono 28 px in basso a sinistra. I loghi FITP e Nitto qui non ci sono.</dd></div>
           </dl>
         </div>
       </article>
