@@ -87,6 +87,9 @@ h1{font-family:var(--serif);font-weight:400;font-size:clamp(34px,4.4vw,60px);lin
 .mix{position:relative;height:44px;border:1px solid rgba(255,255,255,.3);overflow:hidden}
 .mix svg{position:absolute;inset:0;width:100%;height:100%}
 .mix .lbl{position:absolute;left:10px;top:6px;font-family:var(--mono);font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,.62)}
+.hero .player{display:grid;grid-template-columns:minmax(240px,380px) 1fr;gap:40px;align-items:end}
+.hero video{width:100%;aspect-ratio:9/16;height:auto;display:block;background:var(--bluette-900);border:1px solid rgba(255,255,255,.25)}
+@media (max-width:900px){.hero .player{grid-template-columns:1fr}.hero video{max-width:380px}}
 .hero .caption{font-size:14px;color:rgba(255,255,255,.66);max-width:86ch}
 .hero .caption strong{color:rgba(255,255,255,.92)}
 
@@ -285,11 +288,11 @@ footer .fine{
     <h1>Nitto ATP Finals 2026, l’impatto in cinque&nbsp;colpi</h1>
     <p class="sub">Video verticale per i social sulla sintesi dello studio ex ante Nitto ATP Finals 2026. Cinque KPI, uno per colpo: il numero entra insieme al suono della pallina. Stile, trattamento e animazioni sono quelli della scena tennis FITP; cambiano il girato, i dati e il crescendo del sottofondo.</p>
     <dl class="meta">
-      <div><dt>Durata</dt><dd>0:18,5 (entro 20 s)</dd></div>
+      <div><dt>Durata</dt><dd>0:20</dd></div>
       <div><dt>Formato</dt><dd>Verticale 9:16 · 1080×1920 · 30 fps</dd></div>
       <div><dt>Lingua</dt><dd>Italiano</dd></div>
       <div><dt>Voiceover</dt><dd>Nessuno</dd></div>
-      <div><dt>Audio</dt><dd>Un KPI = un colpo = un suono · tappeto in crescendo</dd></div>
+      <div><dt>Audio</dt><dd>Un KPI = un colpo = un suono · musica sprint in crescendo</dd></div>
       <div><dt>Tono</dt><dd>Sportivo e sobrio, i numeri protagonisti</dd></div>
     </dl>
   </div>
@@ -297,32 +300,39 @@ footer .fine{
 
 <section class="hero" aria-labelledby="tl-h">
   <div class="wrap">
-    <h2 id="tl-h">Tempi e colpi</h2>
-    <!-- larghezze in proporzione ai secondi su 18,5 -->
-    <div class="tl" role="img" aria-label="Linea dei tempi: apertura 0–2 s, cinque KPI da 2,5 s ciascuno fino a 14,5 s, sgretolamento fino a 16 s, logo OpenEconomics fino a 18,5 s. Un colpo all'inizio di ogni KPI.">
-      <div class="seg" style="flex:2"><b>0–2</b><span>Apertura</span></div>
-      <div class="seg k" style="flex:2.5"><b>2–4,5</b><span>Telespettatori</span></div>
-      <div class="seg k" style="flex:2.5"><b>4,5–7</b><span>SROI</span></div>
-      <div class="seg k" style="flex:2.5"><b>7–9,5</b><span>Benefici sociali</span></div>
-      <div class="seg k" style="flex:2.5"><b>9,5–12</b><span>Praticanti</span></div>
-      <div class="seg k" style="flex:2.5"><b>12–14,5</b><span>ESG</span></div>
-      <div class="seg k" style="flex:1.5"><b>14,5–16</b><span>Sgretola</span></div>
-      <div class="seg end" style="flex:2.5"><b>16–18,5</b><span>Logo OE</span></div>
-      <i class="hit" style="left:calc(2/18.5*100%)"></i>
-      <i class="hit" style="left:calc(4.5/18.5*100%)"></i>
-      <i class="hit" style="left:calc(7/18.5*100%)"></i>
-      <i class="hit" style="left:calc(9.5/18.5*100%)"></i>
-      <i class="hit" style="left:calc(12/18.5*100%)"></i>
+    <h2 id="tl-h">Video montato</h2>
+    <div class="player">
+      <video src="out/video-nitto.mp4" poster="out/scene/hero.jpg" controls preload="none" aria-label="Video completo — Nitto ATP Finals 2026, l'impatto in cinque colpi"></video>
+      <p class="caption">0:20 · 1080×1920 · 30 fps · colpi della pallina dal girato + musica in crescendo, senza voce · audio a <strong>−14,7 LUFS</strong>, picco −1,2 dBFS. Ogni numero entra sul fotogramma del suo colpo; l’impatto finale della musica cade a 17,0 s, sull’arrivo del logo, e l’accordo si spegne sul codino.</p>
     </div>
-    <div class="ruler" aria-hidden="true"><span>0 s</span><span>5</span><span>10</span><span>15</span><span>18,5</span></div>
+    <h2>Tempi e colpi</h2>
+    <!-- larghezze in proporzione ai secondi su 18,5 -->
+    <div class="tl" role="img" aria-label="Linea dei tempi su 20 s: apertura, cinque KPI ciascuno sul suo colpo, sgretolamento, logo OpenEconomics da 17 s.">
+      <div class="seg" style="flex:2.4"><b>0–2,4</b><span>Apertura</span></div>
+      <div class="seg k" style="flex:2.45"><b>2,4–4,85</b><span>Telespettatori</span></div>
+      <div class="seg k" style="flex:2.6"><b>4,85–7,45</b><span>SROI</span></div>
+      <div class="seg k" style="flex:2.8"><b>7,45–10,25</b><span>Benefici sociali</span></div>
+      <div class="seg k" style="flex:2.85"><b>10,25–13,1</b><span>Praticanti</span></div>
+      <div class="seg k" style="flex:2.5"><b>13,1–15,6</b><span>ESG</span></div>
+      <div class="seg k" style="flex:1.4"><b>15,6–17</b><span>Sgretola</span></div>
+      <div class="seg end" style="flex:3"><b>17–20</b><span>Logo OE</span></div>
+      <i class="hit" style="left:calc(1.48/20*100%)"></i>
+      <i class="hit" style="left:calc(3/20*100%)"></i>
+      <i class="hit" style="left:calc(5.75/20*100%)"></i>
+      <i class="hit" style="left:calc(8.25/20*100%)"></i>
+      <i class="hit" style="left:calc(11.15/20*100%)"></i>
+      <i class="hit" style="left:calc(13.4/20*100%)"></i>
+      <i class="hit" style="left:calc(17/20*100%)"></i>
+    </div>
+    <div class="ruler" aria-hidden="true"><span>0 s</span><span>5</span><span>10</span><span>15</span><span>20</span></div>
     <div class="mix" role="img" aria-label="Volume del tappeto: quasi muto in apertura, sale a ogni KPI fino allo sgretolamento a 14,5 s, poi silenzio sul logo.">
-      <svg viewBox="0 0 185 44" preserveAspectRatio="none" aria-hidden="true">
-        <path d="M0 42 L20 38 L45 33 L70 28 L95 22 L120 16 L145 8 L148 6 L152 42 L185 42 Z" fill="#4400B3"/>
-        <path d="M0 42 L20 38 L45 33 L70 28 L95 22 L120 16 L145 8 L148 6 L152 42" fill="none" stroke="#B9FF69" stroke-width="1.2" vector-effect="non-scaling-stroke"/>
+      <svg viewBox="0 0 200 44" preserveAspectRatio="none" aria-hidden="true">
+        <path d="M0 42 L100 38 L102 16 L169 10 L171 4 L200 42 L0 42 Z" fill="#4400B3"/>
+        <path d="M0 42 L100 38 L102 16 L169 10 L171 4 L200 42" fill="none" stroke="#B9FF69" stroke-width="1.2" vector-effect="non-scaling-stroke"/>
       </svg>
       <span class="lbl">Tappeto</span>
     </div>
-    <p class="caption">I quadratini gialli sono i colpi: <strong>il numero compare sul fotogramma del suono</strong>. Il tappeto parte quasi muto e sale a ogni KPI, più del reference (che resta fermo a −22 dB), sempre sotto ai colpi. Si interrompe sullo sgretolamento della montagna di palline e lascia il logo in silenzio. Master finale verso <strong>−14 LUFS</strong> (il reference è a −21).</p>
+    <p class="caption">I quadratini gialli sono i colpi: <strong>il numero compare sul fotogramma del suono</strong>, preso dall’audio della clip. La musica, «sprint», parte quasi muta sotto i primi colpi, sale di circa 15 dB a 10,1 s, sul taglio verso lo smash, e arriva all’impatto con l’accordo finale a 17,0 s, sul logo; poi si spegne da sola. I colpi stanno 3 dB sopra il tappeto. Master a <strong>−14,7 LUFS</strong> (il reference è a −21).</p>
   </div>
 </section>
 
@@ -337,7 +347,7 @@ footer .fine{
 <main class="board">
   <div class="wrap">
     <h2>Scena per scena</h2>
-    <p class="lead">Nei frame girano le clip generate, già in duotone Bluette con la sola pallina a colori. Testi e loghi sono sovrapposti in pagina con le misure del montato, in scala sul quadro 1080×1920: il video montato arriva al passo successivo.</p>
+    <p class="lead">Nei frame girano le clip generate, già in duotone Bluette con la sola pallina a colori. Testi e loghi sono sovrapposti in pagina, in scala sul quadro 1080×1920; il montato completo è in testa alla pagina.</p>
     <div class="grid anim" id="grid">
 
       <!-- ============ 1 · APERTURA ============ -->
@@ -351,7 +361,7 @@ footer .fine{
             <div class="lg"><img class="fitp" src="assets/loghi/fitp.png" alt="FITP"><img class="nitto" src="assets/loghi/nitto-atp-finals-white.png" alt="Nitto ATP Finals"></div>
           </div>
           <p class="stima">Stime ex ante</p>
-          <div class="layer"><span class="tc">0:00 – 0:02</span></div>
+          <div class="layer"><span class="tc">0:00 – 0:02,4</span></div>
           <div class="safe"></div>
         </div>
         <div class="info">
@@ -380,7 +390,7 @@ footer .fine{
             <div class="lg"><img class="fitp" src="assets/loghi/fitp.png" alt="FITP"><img class="nitto" src="assets/loghi/nitto-atp-finals-white.png" alt="Nitto ATP Finals"></div>
           </div>
           <p class="stima">Stime ex ante</p>
-          <div class="layer"><span class="tc">0:02 – 0:04,5</span></div>
+          <div class="layer"><span class="tc">0:02,4 – 0:04,85</span></div>
           <div class="safe"></div>
         </div>
         <div class="info">
@@ -409,7 +419,7 @@ footer .fine{
             <div class="lg"><img class="fitp" src="assets/loghi/fitp.png" alt="FITP"><img class="nitto" src="assets/loghi/nitto-atp-finals-white.png" alt="Nitto ATP Finals"></div>
           </div>
           <p class="stima">Stime ex ante</p>
-          <div class="layer"><span class="tc">0:04,5 – 0:07</span></div>
+          <div class="layer"><span class="tc">0:04,85 – 0:07,45</span></div>
           <div class="safe"></div>
         </div>
         <div class="info">
@@ -440,7 +450,7 @@ footer .fine{
             <div class="lg"><img class="fitp" src="assets/loghi/fitp.png" alt="FITP"><img class="nitto" src="assets/loghi/nitto-atp-finals-white.png" alt="Nitto ATP Finals"></div>
           </div>
           <p class="stima">Stime ex ante</p>
-          <div class="layer"><span class="tc">0:07 – 0:09,5</span></div>
+          <div class="layer"><span class="tc">0:07,45 – 0:10,25</span></div>
           <div class="safe"></div>
         </div>
         <div class="info">
@@ -470,7 +480,7 @@ footer .fine{
             <div class="lg"><img class="fitp" src="assets/loghi/fitp.png" alt="FITP"><img class="nitto" src="assets/loghi/nitto-atp-finals-white.png" alt="Nitto ATP Finals"></div>
           </div>
           <p class="stima">Stime ex ante</p>
-          <div class="layer"><span class="tc">0:09,5 – 0:12</span></div>
+          <div class="layer"><span class="tc">0:10,25 – 0:13,1</span></div>
           <div class="safe"></div>
         </div>
         <div class="info">
@@ -500,7 +510,7 @@ footer .fine{
             <div class="lg"><img class="fitp" src="assets/loghi/fitp.png" alt="FITP"><img class="nitto" src="assets/loghi/nitto-atp-finals-white.png" alt="Nitto ATP Finals"></div>
           </div>
           <p class="stima">Stime ex ante</p>
-          <div class="layer"><span class="tc">0:12 – 0:14,5</span></div>
+          <div class="layer"><span class="tc">0:13,1 – 0:15,6</span></div>
           <div class="safe"></div>
         </div>
         <div class="info">
@@ -524,7 +534,7 @@ footer .fine{
             <div class="lg"><img class="fitp" src="assets/loghi/fitp.png" alt="FITP"><img class="nitto" src="assets/loghi/nitto-atp-finals-white.png" alt="Nitto ATP Finals"></div>
           </div>
           <p class="stima">Stime ex ante</p>
-          <div class="layer"><span class="tc">0:14,5 – 0:16</span></div>
+          <div class="layer"><span class="tc">0:15,6 – 0:17</span></div>
           <div class="safe"></div>
         </div>
         <div class="info">
@@ -546,7 +556,7 @@ footer .fine{
             <p class="tag">We measure what really matters</p>
           </div>
           <p class="end-ref">Nitto ATP Finals 2026<br>Studio ex ante · stime</p>
-          <div class="layer"><span class="tc">0:16 – 0:18,5</span></div>
+          <div class="layer"><span class="tc">0:17 – 0:20</span></div>
           <div class="safe"></div>
         </div>
         <div class="info">
@@ -570,7 +580,7 @@ footer .fine{
     <ul>
       <li><strong>Un KPI, un colpo, un suono.</strong> Ogni dato entra sul fotogramma del colpo, con lo stesso zoom verso la camera del tennis (dal 55% alla misura piena), resta per la lettura e se ne va prima del colpo dopo. I dati non si accumulano.</li>
       <li><strong>Ordine dei KPI dalla scaletta delle scene</strong>: telespettatori, SROI, benefici sociali, praticanti, ESG. La tabella del brief li metteva in un altro ordine (benefici al 2, praticanti al 3, SROI al 4); le indicazioni su «+7,7%» e «376» valgono comunque, legate al dato e non alla posizione.</li>
-      <li><strong>Misure un po’ più grandi del reference</strong>, come chiede il brief: numero 248 px su 1080 (il tennis era a 215), etichetta 34, didascalia 42, secondo dato a 104 px in Lime. Numero bianco velato di viola (#F8F5F9), didascalia Bluette 050, etichetta Lime 400.</li>
+      <li><strong>Misure un po’ più grandi del reference</strong>, come chiede il brief: come l’APA dopo il feedback del 2 novembre: numero 280 px su 1080 (il tennis era a 215; «415,7 mln €» a 250 per stare in riga), etichetta 36, didascalia 46, secondo dato a 112 px in Lime. Numero bianco velato di viola (#F8F5F9), didascalia Bluette 050, etichetta Lime 400.</li>
       <li><strong>Trattamento</strong>: duotone Bluette come il tennis, ombre su Bluette 900 e luci verso il lilla; righe del campo e rete in Bluette 050. La pallina è l’unica cosa a colori pieni, nessun altro colore caldo.</li>
       <li><strong>Giocatori non riconoscibili</strong>: uno con capelli neri ripreso dall’alto, uno biondo di schiena in controluce. Nessun volto, nessun giocatore reale, nessun marchio sull’abbigliamento o sulla rete.</li>
       <li><strong>Elementi fissi</strong>: monogramma OE in basso a sinistra, FITP e Nitto ATP Finals affiancati in basso a destra, a 250 px dal bordo. Sotto, in piccolo, «Stime ex ante» su tutte le scene.</li>
@@ -583,7 +593,7 @@ footer .fine{
       <li><strong>Autorizzazione al marchio Nitto ATP Finals</strong>: il brief chiede di verificarla.</li>
       <li><strong>Payoff</strong>: proposto «We measure what really matters», il codino di tutti i video OE. Il brief lo lascia da confermare.</li>
       <li><strong>Dicitura «stima»</strong>: qui è un testo fisso in basso, «Stime ex ante». In alternativa può stare solo nell’ultima scena.</li>
-      <li><strong>Suono finale</strong>: proposto il silenzio breve sul logo. Il brief chiede anche 4–5 s di silenzio oltre il video, per un totale di circa 22 s, ma la durata massima è 20 s: va scelto uno dei due.</li>
+      <li><strong>Suono finale</strong>: come nell’APA, impatto della musica sul logo e accordo che si spegne in 3 s fino al silenzio. Il video dura 20 s, il massimo del brief.</li><li><strong>Rallentamenti</strong>: le clip della battuta (scena 3) e dello smash (scena 5) sono rallentate del 30% con interpolazione dei fotogrammi, perché il colpo cadeva troppo vicino alla fine della clip per lasciare il tempo di leggere il numero.</li>
       <li><strong>Bollino AI</strong>: nel reference il segno in alto a sinistra è il nostro bollino di dichiarazione AI, non la filigrana di un tool. Il brief chiede di toglierlo, ma il girato sarà di nuovo generato con AI: confermare se va omesso.</li>
       <li><strong>Clip da rivedere</strong>: nella scena 2 la pallina si avvicina alla camera ma il contatto col pavimento non si vede bene; nella scena 5 il colpo somiglia più a una battuta che a uno smash. Si possono rigenerare.</li>
     </ul>
