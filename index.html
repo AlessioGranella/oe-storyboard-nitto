@@ -1,0 +1,648 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>Storyboard Nitto ATP Finals</title>
+
+<style>
+/* ── Font ─────────────────────────────────────────────────────────────── */
+@font-face{font-family:"Hedvig Letters Serif";src:url("assets/fonts/HedvigLettersSerif-18pt-Regular.ttf") format("truetype");font-weight:400;font-display:swap}
+@font-face{font-family:"Atkinson Hyperlegible Next";src:url("assets/fonts/AtkinsonHyperlegibleNext-Regular.ttf") format("truetype");font-weight:400;font-display:swap}
+@font-face{font-family:"Atkinson Hyperlegible Next";src:url("assets/fonts/AtkinsonHyperlegibleNext-Bold.ttf") format("truetype");font-weight:700;font-display:swap}
+@font-face{font-family:"Atkinson Hyperlegible Mono";src:url("assets/fonts/AtkinsonHyperlegibleMono-VariableFont_wght.ttf") format("truetype");font-weight:200 800;font-display:swap}
+
+/* ── Token OE ─────────────────────────────────────────────────────────── */
+:root{
+  --bluette-050:#EFE5FF;
+  --bluette-700:#4400B3;
+  --bluette-800:#340088;
+  --bluette-900:#270065;
+  --bluette-950:#13012F;
+  --lime-400:#B9FF69;
+  --ball:#D8F23A;           /* giallo-verde della pallina: da verificare sul girato */
+  --white:#FFFFFF;
+  --num:#F8F5F9;            /* bianco appena velato di viola, dal brief */
+  --black:#000000;
+  --gray-300:#D2D2D2;
+  --gray-500:#999999;
+  --gray-700:#545454;
+
+  --serif:"Hedvig Letters Serif",Georgia,serif;
+  --sans:"Atkinson Hyperlegible Next",-apple-system,"Helvetica Neue",Arial,sans-serif;
+  --mono:"Atkinson Hyperlegible Mono",ui-monospace,"SF Mono",Menlo,monospace;
+
+  --max:1440px;
+  --pad:40px;
+}
+
+*{box-sizing:border-box;margin:0;padding:0;border-radius:0}
+
+body{
+  background:var(--white);color:var(--black);
+  font-family:var(--sans);font-size:16px;line-height:1.55;
+  -webkit-font-smoothing:antialiased;
+}
+.wrap{max-width:var(--max);margin:0 auto;padding:0 var(--pad)}
+
+/* ── Header ───────────────────────────────────────────────────────────── */
+.masthead{background:var(--bluette-700);color:var(--white);padding:64px 0 56px}
+.masthead .wrap{display:flex;flex-direction:column;gap:28px}
+.eyebrow{
+  font-family:var(--mono);font-size:12px;font-weight:600;
+  text-transform:uppercase;letter-spacing:.14em;color:var(--lime-400);
+}
+h1{font-family:var(--serif);font-weight:400;font-size:clamp(34px,4.4vw,60px);line-height:1.06;letter-spacing:-.01em;max-width:20ch}
+.sub{font-size:17px;line-height:1.5;max-width:62ch;color:rgba(255,255,255,.86)}
+
+.meta{
+  display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));
+  gap:1px;background:rgba(255,255,255,.28);border:1px solid rgba(255,255,255,.28);margin-top:6px;
+}
+.meta div{background:var(--bluette-700);padding:16px 18px}
+.meta dt{
+  font-family:var(--mono);font-size:11px;font-weight:600;text-transform:uppercase;
+  letter-spacing:.12em;color:rgba(255,255,255,.62);margin-bottom:6px;
+}
+.meta dd{font-size:15px;line-height:1.35}
+
+/* ── Linea dei tempi (al posto del video montato, che ancora non c'è) ── */
+.hero{background:var(--black);color:var(--white);padding:56px 0 64px}
+.hero .wrap{display:flex;flex-direction:column;gap:22px}
+.hero h2{
+  font-family:var(--mono);font-size:12px;font-weight:600;text-transform:uppercase;
+  letter-spacing:.14em;color:var(--lime-400);
+}
+.tl{position:relative;display:flex;height:76px;border:1px solid rgba(255,255,255,.3)}
+.tl .seg{position:relative;border-right:1px solid rgba(255,255,255,.3);padding:10px 10px;overflow:hidden}
+.tl .seg:last-child{border-right:0}
+.tl .seg b{display:block;font-family:var(--mono);font-size:11px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,.62)}
+.tl .seg span{display:block;font-size:13px;line-height:1.3;margin-top:4px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.tl .seg.k{background:var(--bluette-900)}
+.tl .seg.end{background:var(--bluette-700)}
+.tl .hit{position:absolute;top:-7px;bottom:-7px;width:2px;background:var(--lime-400)}
+.tl .hit::after{content:"";position:absolute;top:-6px;left:-5px;width:12px;height:12px;background:var(--ball)}
+.ruler{display:flex;justify-content:space-between;font-family:var(--mono);font-size:11px;color:rgba(255,255,255,.5);margin-top:-12px}
+.mix{position:relative;height:44px;border:1px solid rgba(255,255,255,.3);overflow:hidden}
+.mix svg{position:absolute;inset:0;width:100%;height:100%}
+.mix .lbl{position:absolute;left:10px;top:6px;font-family:var(--mono);font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,.62)}
+.hero .caption{font-size:14px;color:rgba(255,255,255,.66);max-width:86ch}
+.hero .caption strong{color:rgba(255,255,255,.92)}
+
+/* ── Barra strumenti ──────────────────────────────────────────────────── */
+.toolbar{border-bottom:1px solid var(--gray-300);background:var(--white);position:sticky;top:0;z-index:10}
+.toolbar .wrap{display:flex;flex-wrap:wrap;align-items:center;gap:24px;padding-top:14px;padding-bottom:14px}
+.toolbar .label{
+  font-family:var(--mono);font-size:11px;font-weight:600;text-transform:uppercase;
+  letter-spacing:.12em;color:var(--gray-700);
+}
+.toggle{display:inline-flex;align-items:center;gap:9px;cursor:pointer;user-select:none;font-size:14px}
+.toggle input{
+  appearance:none;width:17px;height:17px;border:1.5px solid var(--black);
+  background:var(--white);cursor:pointer;flex:none;display:grid;place-content:center;
+}
+.toggle input:checked{background:var(--bluette-700);border-color:var(--bluette-700)}
+.toggle input:checked::after{content:"";width:8px;height:8px;background:var(--lime-400)}
+.toggle input:focus-visible{outline:2px solid var(--bluette-700);outline-offset:2px}
+
+/* ── Griglia frame ────────────────────────────────────────────────────── */
+.board{padding:48px 0 96px}
+.board > .wrap > h2{
+  font-family:var(--mono);font-size:11px;font-weight:600;text-transform:uppercase;
+  letter-spacing:.14em;color:var(--gray-700);margin-bottom:10px;
+}
+.board > .wrap > p.lead{font-size:14px;color:var(--gray-700);max-width:86ch;margin-bottom:28px}
+.grid{display:grid;grid-template-columns:repeat(4,1fr);gap:48px 28px}
+.beat{display:flex;flex-direction:column}
+
+/* Il frame è il quadro 1080×1920 in scala: tutte le misure interne sono in cqw,
+   1cqw = 10,8 px sul video. Così le proporzioni sono quelle vere del montato. */
+.frame{
+  container-type:inline-size;
+  position:relative;aspect-ratio:9/16;overflow:hidden;
+  background:
+    radial-gradient(120% 70% at 50% 60%, var(--bluette-800) 0%, var(--bluette-900) 55%, var(--bluette-950) 100%);
+  border:1px solid var(--black);
+}
+.frame .sk{position:absolute;inset:0;width:100%;height:100%;display:block;z-index:0}
+.sk .ln{fill:none;stroke:var(--bluette-050);stroke-opacity:.42;stroke-width:3}
+.sk .ln2{fill:none;stroke:var(--bluette-050);stroke-opacity:.22;stroke-width:2}
+.sk .fl{fill:var(--bluette-700);fill-opacity:.55}
+.sk .fd{fill:var(--bluette-950);fill-opacity:.8}
+.sk .ball{fill:var(--ball)}
+.sk .mv{fill:none;stroke:var(--ball);stroke-opacity:.55;stroke-width:3;stroke-dasharray:10 12}
+.sk .hairD{fill:#0d0420}
+.sk .hairB{fill:#cbb98a}
+
+/* velatura centrale per il testo, come nel tennis */
+.veil{position:absolute;inset:0;z-index:1;pointer-events:none;
+  background:linear-gradient(180deg, rgba(39,0,101,0) 28%, rgba(39,0,101,.55) 42%, rgba(39,0,101,.55) 62%, rgba(39,0,101,0) 76%)}
+
+/* blocco dati: etichetta Lime, numero Hedvig, didascalia Atkinson, centrati nel terzo centrale */
+.blk{position:absolute;left:6cqw;right:6cqw;top:50%;z-index:2;
+  transform:translateY(-50%);text-align:center;display:flex;flex-direction:column;align-items:center}
+.lab{font-family:var(--mono);font-weight:600;font-size:3.15cqw;letter-spacing:.16em;text-transform:uppercase;color:var(--lime-400)}
+.fig{font-family:var(--serif);font-weight:400;font-size:23cqw;line-height:1;letter-spacing:-.02em;color:var(--num);margin-top:2.4cqw;white-space:nowrap}
+.fig .u{font-size:.36em;letter-spacing:-.005em;margin-left:.08em}
+.fig .bar{font-size:.5em;opacity:.55;margin:0 .14em;position:relative;top:-.16em}
+.cap{font-family:var(--sans);font-size:3.9cqw;line-height:1.3;color:var(--bluette-050);margin-top:2.6cqw}
+.sec{font-family:var(--serif);font-size:9.6cqw;line-height:1;color:var(--lime-400);margin-top:3cqw}
+.sec2{font-family:var(--sans);font-size:3.9cqw;line-height:1.3;color:var(--bluette-050);margin-top:3.2cqw}
+.sec2 strong{font-family:var(--serif);font-weight:400;font-size:2.4em;color:var(--num);display:block;line-height:1;margin-bottom:.5cqw}
+.title{font-family:var(--serif);font-weight:400;font-size:10.4cqw;line-height:1.06;letter-spacing:-.015em;color:var(--num)}
+.title .d{display:block;font-family:var(--mono);font-size:3.15cqw;letter-spacing:.16em;text-transform:uppercase;color:var(--lime-400);margin-top:4cqw}
+
+/* elementi fissi: monogramma in basso a sinistra, FITP + Nitto in basso a destra,
+   sopra il margine sicuro dei social (250 px dal bordo = 23cqw) */
+.fix{position:absolute;left:8.9cqw;right:8.9cqw;bottom:23cqw;z-index:3;display:flex;align-items:flex-end;justify-content:space-between}
+.fix .mono{width:5.6cqw;height:5.6cqw;color:var(--white)}
+.fix .lg{display:flex;align-items:center;gap:3.4cqw}
+.fix .fitp{height:6.4cqw;width:auto;display:block;filter:brightness(0) invert(1)}
+.fix .nitto{height:6.4cqw;width:auto;display:block}
+.stima{position:absolute;left:8.9cqw;bottom:16.6cqw;z-index:3;font-family:var(--mono);font-size:2.1cqw;letter-spacing:.08em;color:rgba(255,255,255,.62)}
+
+/* chiusura */
+.end{position:absolute;inset:0;z-index:2;display:flex;flex-direction:column;align-items:center;justify-content:center}
+.end img{width:64.8cqw;height:auto;display:block}
+.end .tag{font-family:var(--serif);font-size:5.6cqw;line-height:1.15;color:var(--white);margin-top:5.2cqw}
+
+/* timecode */
+.layer{position:absolute;inset:0;z-index:4;padding:4.6cqw 5cqw;pointer-events:none}
+.tc{
+  font-family:var(--mono);font-size:4.6cqw;font-weight:600;letter-spacing:.11em;
+  text-transform:uppercase;color:var(--lime-400);
+  text-shadow:0 1px 8px rgba(0,0,0,.7);
+}
+
+/* Aree sicure 9:16 per Reels/TikTok */
+.safe{position:absolute;inset:0;z-index:5;display:none;pointer-events:none}
+.grid.show-safe .safe{display:block}
+.safe::before{content:"";position:absolute;inset:7% 6% 13% 6%;outline:1px dashed rgba(185,255,105,.85)}
+.safe::after{
+  content:"AREA SICURA 9:16";position:absolute;left:6%;bottom:13%;transform:translateY(130%);
+  font-family:var(--mono);font-size:3.6cqw;font-weight:600;letter-spacing:.12em;color:var(--lime-400);
+}
+
+/* ── Animazione dei frame: la pallina e l'entrata a zoom del blocco ───── */
+.anim .blk{animation:zoom 2.6s cubic-bezier(.16,1,.3,1) infinite}
+.anim .end{animation:zoom 3.4s cubic-bezier(.16,1,.3,1) infinite}
+.anim .bnc{animation:bnc 2.6s cubic-bezier(.5,0,.5,1) infinite;transform-box:fill-box;transform-origin:center bottom}
+.anim .fall{animation:fall 2.6s cubic-bezier(.55,0,1,.45) infinite}
+.anim .crumble{animation:crumble 3.4s ease-in infinite;transform-box:fill-box;transform-origin:center}
+@keyframes zoom{
+  0%,18%{opacity:0;transform:translateY(-50%) scale(.55)}
+  38%{opacity:1;transform:translateY(-50%) scale(1)}
+  86%{opacity:1;transform:translateY(-50%) scale(1)}
+  100%{opacity:0;transform:translateY(-50%) scale(1)}
+}
+.end{transform:none}
+.anim .end{animation-name:zoomEnd}
+@keyframes zoomEnd{
+  0%,30%{opacity:0;transform:scale(.8)}
+  48%,92%{opacity:1;transform:scale(1)}
+  100%{opacity:0;transform:scale(1)}
+}
+@keyframes bnc{
+  0%{transform:translateY(-40%)}
+  20%{transform:translateY(0) scaleY(.82)}
+  26%{transform:translateY(-6%) scaleY(1)}
+  60%{transform:translateY(-40%)}
+  100%{transform:translateY(-40%)}
+}
+@keyframes fall{
+  0%{transform:translateY(-520px)}
+  22%{transform:translateY(0)}
+  100%{transform:translateY(0)}
+}
+@keyframes crumble{
+  0%,20%{transform:translate(0,0) rotate(0)}
+  70%,100%{transform:translate(var(--dx,0),var(--dy,240px)) rotate(var(--r,40deg));opacity:.2}
+}
+@media (prefers-reduced-motion:reduce){ .anim *{animation:none!important} }
+
+/* ── Metadati sotto il frame ──────────────────────────────────────────── */
+.info{border-left:1px solid var(--black);padding:16px 0 0 16px;margin-top:16px}
+.info .idx{
+  font-family:var(--mono);font-size:11px;font-weight:700;letter-spacing:.12em;
+  text-transform:uppercase;color:var(--bluette-700);margin-bottom:12px;
+  display:flex;align-items:center;gap:8px;flex-wrap:wrap;
+}
+.chip{
+  font-family:var(--mono);font-size:9px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;
+  background:var(--lime-400);color:var(--black);padding:3px 6px;
+}
+.chip.keep{background:var(--gray-300);color:var(--black)}
+.info dl{display:flex;flex-direction:column;gap:11px}
+.info dt{
+  font-family:var(--mono);font-size:10px;font-weight:600;letter-spacing:.12em;
+  text-transform:uppercase;color:var(--gray-500);margin-bottom:2px;
+}
+.info dd{font-size:14px;line-height:1.45}
+.info dd.prompt{font-size:13px;line-height:1.5;color:var(--gray-700)}
+.info dd.note{font-size:13px;line-height:1.5;color:var(--black)}
+.info code{font-family:var(--mono);font-size:.92em}
+
+/* ── Footer ───────────────────────────────────────────────────────────── */
+footer{background:var(--black);color:var(--white);padding:56px 0}
+footer .wrap{display:flex;flex-direction:column;gap:18px}
+footer h2{font-family:var(--serif);font-weight:400;font-size:26px;line-height:1.2}
+footer h2:not(:first-child){margin-top:22px}
+footer ul{list-style:none;display:flex;flex-direction:column;gap:9px;max-width:80ch}
+footer li{font-size:15px;line-height:1.5;color:rgba(255,255,255,.78);padding-left:18px;position:relative}
+footer li::before{content:"";position:absolute;left:0;top:.62em;width:7px;height:7px;background:var(--lime-400)}
+footer li strong{color:var(--white)}
+footer code{font-family:var(--mono);font-size:.9em;color:var(--lime-400)}
+footer .fine{
+  font-family:var(--mono);font-size:11px;letter-spacing:.1em;text-transform:uppercase;
+  color:rgba(255,255,255,.5);margin-top:14px;
+}
+
+@media (max-width:1200px){ .grid{grid-template-columns:repeat(3,1fr)} }
+@media (max-width:900px){ .grid{grid-template-columns:repeat(2,1fr)} .tl .seg span{display:none} }
+@media (max-width:640px){
+  :root{--pad:16px}
+  .grid{grid-template-columns:1fr;gap:36px}
+  .frame{max-width:380px}
+  .masthead{padding:44px 0 40px}
+  .tl .seg b{font-size:9px;letter-spacing:0}
+  .tl .seg{padding:8px 4px}
+}
+@media print{
+  .toolbar{display:none}
+  .grid{grid-template-columns:repeat(2,1fr)}
+  .beat{break-inside:avoid}
+  .anim *{animation:none!important}
+}
+</style>
+</head>
+<body>
+
+<header class="masthead">
+  <div class="wrap">
+    <p class="eyebrow">OpenEconomics · Storyboard visivo</p>
+    <h1>Nitto ATP Finals 2026, l’impatto in cinque&nbsp;colpi</h1>
+    <p class="sub">Video verticale per i social sulla sintesi dello studio ex ante Nitto ATP Finals 2026. Cinque KPI, uno per colpo: il numero entra insieme al suono della pallina. Stile, trattamento e animazioni sono quelli della scena tennis FITP; cambiano il girato, i dati e il crescendo del sottofondo.</p>
+    <dl class="meta">
+      <div><dt>Durata</dt><dd>0:18,5 (entro 20 s)</dd></div>
+      <div><dt>Formato</dt><dd>Verticale 9:16 · 1080×1920 · 30 fps</dd></div>
+      <div><dt>Lingua</dt><dd>Italiano</dd></div>
+      <div><dt>Voiceover</dt><dd>Nessuno</dd></div>
+      <div><dt>Audio</dt><dd>Un KPI = un colpo = un suono · tappeto in crescendo</dd></div>
+      <div><dt>Tono</dt><dd>Sportivo e sobrio, i numeri protagonisti</dd></div>
+    </dl>
+  </div>
+</header>
+
+<section class="hero" aria-labelledby="tl-h">
+  <div class="wrap">
+    <h2 id="tl-h">Tempi e colpi</h2>
+    <!-- larghezze in proporzione ai secondi su 18,5 -->
+    <div class="tl" role="img" aria-label="Linea dei tempi: apertura 0–2 s, cinque KPI da 2,5 s ciascuno fino a 14,5 s, chiusura fino a 18,5 s. Un colpo all'inizio di ogni KPI.">
+      <div class="seg" style="flex:2"><b>0–2</b><span>Apertura</span></div>
+      <div class="seg k" style="flex:2.5"><b>2–4,5</b><span>Telespettatori</span></div>
+      <div class="seg k" style="flex:2.5"><b>4,5–7</b><span>SROI</span></div>
+      <div class="seg k" style="flex:2.5"><b>7–9,5</b><span>Benefici sociali</span></div>
+      <div class="seg k" style="flex:2.5"><b>9,5–12</b><span>Praticanti</span></div>
+      <div class="seg k" style="flex:2.5"><b>12–14,5</b><span>ESG</span></div>
+      <div class="seg end" style="flex:4"><b>14,5–18,5</b><span>Chiusura</span></div>
+      <i class="hit" style="left:calc(2/18.5*100%)"></i>
+      <i class="hit" style="left:calc(4.5/18.5*100%)"></i>
+      <i class="hit" style="left:calc(7/18.5*100%)"></i>
+      <i class="hit" style="left:calc(9.5/18.5*100%)"></i>
+      <i class="hit" style="left:calc(12/18.5*100%)"></i>
+    </div>
+    <div class="ruler" aria-hidden="true"><span>0 s</span><span>5</span><span>10</span><span>15</span><span>18,5</span></div>
+    <div class="mix" role="img" aria-label="Volume del tappeto: quasi muto in apertura, sale a ogni KPI fino allo sgretolamento a 14,5 s, poi silenzio sul logo.">
+      <svg viewBox="0 0 185 44" preserveAspectRatio="none" aria-hidden="true">
+        <path d="M0 42 L20 38 L45 33 L70 28 L95 22 L120 16 L145 8 L148 6 L152 42 L185 42 Z" fill="#4400B3"/>
+        <path d="M0 42 L20 38 L45 33 L70 28 L95 22 L120 16 L145 8 L148 6 L152 42" fill="none" stroke="#B9FF69" stroke-width="1.2" vector-effect="non-scaling-stroke"/>
+      </svg>
+      <span class="lbl">Tappeto</span>
+    </div>
+    <p class="caption">I quadratini gialli sono i colpi: <strong>il numero compare sul fotogramma del suono</strong>. Il tappeto parte quasi muto e sale a ogni KPI, più del reference (che resta fermo a −22 dB), sempre sotto ai colpi. Si interrompe sullo sgretolamento della montagna di palline e lascia il logo in silenzio. Master finale verso <strong>−14 LUFS</strong> (il reference è a −21).</p>
+  </div>
+</section>
+
+<div class="toolbar">
+  <div class="wrap">
+    <span class="label">Vista</span>
+    <label class="toggle"><input type="checkbox" id="animToggle" checked> Anima i frame</label>
+    <label class="toggle"><input type="checkbox" id="safeToggle"> Mostra area sicura 9:16</label>
+  </div>
+</div>
+
+<main class="board">
+  <div class="wrap">
+    <h2>Scena per scena</h2>
+    <p class="lead">I frame sono schizzi: il girato non è ancora generato. Testi, misure, colori e loghi sono invece quelli del montato, in scala sul quadro 1080×1920.</p>
+    <div class="grid anim" id="grid">
+
+      <!-- ============ 1 · APERTURA ============ -->
+      <article class="beat">
+        <div class="frame">
+          <svg class="sk" viewBox="0 0 1080 1920" aria-hidden="true">
+            <path class="fd" d="M0 1380 L1080 1320 L1080 1920 L0 1920 Z"/>
+            <path class="ln2" d="M0 1380 L1080 1320"/>
+            <!-- mano dall'alto, palmo verso il basso -->
+            <path class="fl" d="M380 0 L380 300 Q380 380 450 400 L640 400 Q700 390 700 330 L700 0 Z"/>
+            <path class="ln" d="M380 0 L380 300 Q380 380 450 400 L640 400 Q700 390 700 330 L700 0"/>
+            <path class="ln2" d="M450 400 L450 440 M510 400 L510 452 M570 400 L570 452 M630 400 L630 440"/>
+            <path class="mv" d="M540 520 L540 1290"/>
+            <ellipse class="ln2" cx="540" cy="1340" rx="90" ry="16"/>
+            <g class="bnc"><circle class="ball" cx="540" cy="1290" r="52"/></g>
+          </svg>
+          <div class="veil"></div>
+          <div class="blk"><h3 class="title">Nitto ATP Finals 2026<span class="d">— impatto</span></h3></div>
+          <div class="fix">
+            <svg class="mono" viewBox="0 0 80 81" aria-label="OpenEconomics"><path d="M39.8 0C17.8 0 0 17.9 0 40c0 22.1 17.8 40.1 39.8 40.1 22 0 39.8-17.9 39.8-40.1C79.6 17.9 61.8 0 39.8 0Zm23.5 63.7h-47V16.4h47v47.3Z" fill="currentColor"/></svg>
+            <div class="lg"><img class="fitp" src="assets/loghi/fitp.png" alt="FITP"><img class="nitto" src="assets/loghi/nitto-atp-finals-white.png" alt="Nitto ATP Finals"></div>
+          </div>
+          <p class="stima">Stime ex ante</p>
+          <div class="layer"><span class="tc">0:00 – 0:02</span></div>
+          <div class="safe"></div>
+        </div>
+        <div class="info">
+          <p class="idx">Scena 01 · Apertura <span class="chip">Da generare</span></p>
+          <dl>
+            <div><dt>On-screen</dt><dd>«Nitto ATP Finals 2026 — impatto», per 1 secondo · loghi fissi in basso da qui alla fine</dd></div>
+            <div><dt>Visivo</dt><dd class="prompt">Dall’alto entra una mano che spinge la pallina gialla verso il basso. La pallina rimbalza sul pavimento, esce dall’inquadratura e torna sulla mano. La camera ruota piano attorno alla mano, mai ferma. Duotone Bluette da qui alla fine, la pallina resta gialla.</dd></div>
+            <div><dt>Audio</dt><dd class="prompt">Primo flop sul pavimento. Il tappeto parte appena sotto, quasi muto.</dd></div>
+            <div><dt>Prompt</dt><dd class="prompt">Seedance 2.5, 5 s, 9:16: «Close-up of a hand, palm down, pushing a yellow tennis ball toward a dark indoor court floor. The ball bounces, leaves the frame and comes back up into the hand. Slow orbiting camera, shallow depth of field, dramatic arena lighting, no logos, no faces.»</dd></div>
+          </dl>
+        </div>
+      </article>
+
+      <!-- ============ 2 · KPI 1 TELESPETTATORI ============ -->
+      <article class="beat">
+        <div class="frame">
+          <svg class="sk" viewBox="0 0 1080 1920" aria-hidden="true">
+            <path class="fl" d="M0 1180 L1080 1100 L1080 1920 L0 1920 Z"/>
+            <path class="ln" d="M0 1520 L1080 1400 M180 1920 L460 1120 M880 1920 L700 1110"/>
+            <ellipse class="ln2" cx="560" cy="1440" rx="150" ry="24"/>
+            <path class="mv" d="M380 1380 Q420 1420 470 1440 M740 1380 Q700 1420 650 1440"/>
+            <g class="bnc"><circle class="ball" cx="560" cy="1380" r="60"/></g>
+          </svg>
+          <div class="veil"></div>
+          <div class="blk">
+            <p class="lab">Telespettatori in Italia</p>
+            <p class="fig">29<span class="u">mln</span></p>
+            <p class="cap">91% in diretta</p>
+          </div>
+          <div class="fix">
+            <svg class="mono" viewBox="0 0 80 81" aria-label="OpenEconomics"><path d="M39.8 0C17.8 0 0 17.9 0 40c0 22.1 17.8 40.1 39.8 40.1 22 0 39.8-17.9 39.8-40.1C79.6 17.9 61.8 0 39.8 0Zm23.5 63.7h-47V16.4h47v47.3Z" fill="currentColor"/></svg>
+            <div class="lg"><img class="fitp" src="assets/loghi/fitp.png" alt="FITP"><img class="nitto" src="assets/loghi/nitto-atp-finals-white.png" alt="Nitto ATP Finals"></div>
+          </div>
+          <p class="stima">Stime ex ante</p>
+          <div class="layer"><span class="tc">0:02 – 0:04,5</span></div>
+          <div class="safe"></div>
+        </div>
+        <div class="info">
+          <p class="idx">Scena 02 · KPI 1 <span class="chip">Da generare</span></p>
+          <dl>
+            <div><dt>On-screen</dt><dd>TELESPETTATORI IN ITALIA · <strong>29 mln</strong> · 91% in diretta</dd></div>
+            <div><dt>Visivo</dt><dd class="prompt">Secondo rimbalzo, ripreso basso, quasi a filo del pavimento: la pallina schiaccia e riparte. Il KPI entra con lo zoom verso la camera sul fotogramma del contatto.</dd></div>
+            <div><dt>Audio</dt><dd class="prompt">Flop della pallina, sincronizzato al numero.</dd></div>
+            <div><dt>Prompt</dt><dd class="prompt">Seedance 2.5, 5 s, 9:16: «Low-angle macro shot at floor level of a yellow tennis ball bouncing on a hard indoor court, the ball squashes on impact and rebounds toward the camera. Slow push-in, motion blur, dark arena, court lines visible, no logos.»</dd></div>
+          </dl>
+        </div>
+      </article>
+
+      <!-- ============ 3 · KPI 2 SROI ============ -->
+      <article class="beat">
+        <div class="frame">
+          <svg class="sk" viewBox="0 0 1080 1920" aria-hidden="true">
+            <!-- campo visto dall'alto -->
+            <path class="fl" d="M140 0 L940 0 L940 1920 L140 1920 Z"/>
+            <path class="ln" d="M140 0 V1920 M940 0 V1920 M240 0 V1920 M840 0 V1920 M240 1180 H840 M540 1180 V1920 M140 1620 H940"/>
+            <!-- giocatore 1 dall'alto: capelli neri, spalle, racchetta alzata -->
+            <ellipse class="fd" cx="520" cy="1700" rx="120" ry="58"/>
+            <circle class="hairD" cx="520" cy="1700" r="44"/>
+            <path class="ln" d="M600 1670 L720 1520"/>
+            <ellipse class="ln" cx="750" cy="1470" rx="56" ry="74" transform="rotate(30 750 1470)"/>
+            <path class="mv" d="M790 1380 L700 1240"/>
+            <g class="bnc"><circle class="ball" cx="800" cy="1370" r="34"/></g>
+          </svg>
+          <div class="veil"></div>
+          <div class="blk">
+            <p class="lab">SROI ex ante</p>
+            <p class="fig">4,87</p>
+            <p class="cap">valore sociale per ogni euro investito</p>
+          </div>
+          <div class="fix">
+            <svg class="mono" viewBox="0 0 80 81" aria-label="OpenEconomics"><path d="M39.8 0C17.8 0 0 17.9 0 40c0 22.1 17.8 40.1 39.8 40.1 22 0 39.8-17.9 39.8-40.1C79.6 17.9 61.8 0 39.8 0Zm23.5 63.7h-47V16.4h47v47.3Z" fill="currentColor"/></svg>
+            <div class="lg"><img class="fitp" src="assets/loghi/fitp.png" alt="FITP"><img class="nitto" src="assets/loghi/nitto-atp-finals-white.png" alt="Nitto ATP Finals"></div>
+          </div>
+          <p class="stima">Stime ex ante</p>
+          <div class="layer"><span class="tc">0:04,5 – 0:07</span></div>
+          <div class="safe"></div>
+        </div>
+        <div class="info">
+          <p class="idx">Scena 03 · KPI 2 <span class="chip">Da generare</span></p>
+          <dl>
+            <div><dt>On-screen</dt><dd>SROI EX ANTE · <strong>4,87</strong> · valore sociale per ogni euro investito</dd></div>
+            <div><dt>Visivo</dt><dd class="prompt">Battuta del giocatore 1, capelli neri, inquadratura zenitale: dall’alto si vedono testa, spalle e racchetta, mai il volto. La camera ruota lenta sull’asse verticale. Lo SROI entra sull’impatto della racchetta.</dd></div>
+            <div><dt>Audio</dt><dd class="prompt">Colpo di racchetta sulla palla.</dd></div>
+            <div><dt>Prompt</dt><dd class="prompt">Seedance 2.5, 5 s, 9:16: «Top-down overhead shot of a tennis player with short black hair serving on a dark indoor hard court, seen only from above (head, shoulders, racket), yellow ball tossed toward the camera. Slow rotating camera, plain dark clothing with no logos or text.»</dd></div>
+          </dl>
+        </div>
+      </article>
+
+      <!-- ============ 4 · KPI 3 BENEFICI SOCIALI ============ -->
+      <article class="beat">
+        <div class="frame">
+          <svg class="sk" viewBox="0 0 1080 1920" aria-hidden="true">
+            <path class="fd" d="M0 1600 L1080 1600 L1080 1920 L0 1920 Z"/>
+            <!-- rete in primo piano: nastro e maglie -->
+            <path class="ln" d="M-20 1480 L1100 1450" style="stroke-width:16;stroke-opacity:.6"/>
+            <path class="ln2" d="M0 1490 V1920 M90 1488 V1920 M180 1486 V1920 M270 1483 V1920 M360 1481 V1920 M450 1478 V1920 M540 1476 V1920 M630 1473 V1920 M720 1471 V1920 M810 1468 V1920 M900 1466 V1920 M990 1463 V1920 M0 1580 H1080 M0 1670 H1080 M0 1760 H1080 M0 1850 H1080"/>
+            <path class="mv" d="M120 1200 Q400 1360 560 1440"/>
+            <circle class="ball" cx="600" cy="1418" r="46"/>
+            <path class="ln" d="M600 1350 V1300 M650 1362 L680 1330 M550 1362 L520 1330" style="stroke:#D8F23A;stroke-opacity:.7"/>
+          </svg>
+          <div class="veil"></div>
+          <div class="blk">
+            <p class="lab">Benefici sociali</p>
+            <p class="fig">415,7<span class="u">mln €</span></p>
+            <p class="sec">+7,7% sul 2025</p>
+            <p class="cap">valore sociale stimato</p>
+          </div>
+          <div class="fix">
+            <svg class="mono" viewBox="0 0 80 81" aria-label="OpenEconomics"><path d="M39.8 0C17.8 0 0 17.9 0 40c0 22.1 17.8 40.1 39.8 40.1 22 0 39.8-17.9 39.8-40.1C79.6 17.9 61.8 0 39.8 0Zm23.5 63.7h-47V16.4h47v47.3Z" fill="currentColor"/></svg>
+            <div class="lg"><img class="fitp" src="assets/loghi/fitp.png" alt="FITP"><img class="nitto" src="assets/loghi/nitto-atp-finals-white.png" alt="Nitto ATP Finals"></div>
+          </div>
+          <p class="stima">Stime ex ante</p>
+          <div class="layer"><span class="tc">0:07 – 0:09,5</span></div>
+          <div class="safe"></div>
+        </div>
+        <div class="info">
+          <p class="idx">Scena 04 · KPI 3 <span class="chip">Da generare</span></p>
+          <dl>
+            <div><dt>On-screen</dt><dd>BENEFICI SOCIALI · <strong>415,7 mln €</strong> · <strong>+7,7% sul 2025</strong> in Lime, a misura intermedia · valore sociale stimato</dd></div>
+            <div><dt>Visivo</dt><dd class="prompt">Rimbalzo e pallina che colpisce il nastro della rete, ripresa di lato a filo del nastro, in leggero ralenti. I benefici entrano sul contatto; il +7,7% arriva un istante dopo il numero, come secondo elemento.</dd></div>
+            <div><dt>Audio</dt><dd class="prompt">Colpo secco sul nastro (variante ammessa dal brief).</dd></div>
+            <div><dt>Prompt</dt><dd class="prompt">Seedance 2.5, 5 s, 9:16: «Side close-up at the height of a tennis net tape on a dark indoor court: a yellow tennis ball flies in and clips the white net tape, the net shakes, slight slow motion. Camera slowly tracking along the net, shallow depth of field, no logos or sponsor text on the net.»</dd></div>
+          </dl>
+        </div>
+      </article>
+
+      <!-- ============ 5 · KPI 4 PRATICANTI ============ -->
+      <article class="beat">
+        <div class="frame">
+          <svg class="sk" viewBox="0 0 1080 1920" aria-hidden="true">
+            <!-- giocatore 2 di schiena in controluce, capelli biondi, smash -->
+            <radialGradient id="cl" cx="50%" cy="22%" r="60%"><stop offset="0" stop-color="#EFE5FF" stop-opacity=".35"/><stop offset="1" stop-color="#EFE5FF" stop-opacity="0"/></radialGradient>
+            <rect width="1080" height="1920" fill="url(#cl)"/>
+            <path class="fd" d="M300 1920 L330 1760 Q350 1600 470 1560 L640 1560 Q760 1600 780 1760 L800 1920 Z"/>
+            <circle class="hairB" cx="555" cy="1470" r="96"/>
+            <path d="M700 1600 L860 1240 L900 1120" style="stroke:#13012F;stroke-width:60;stroke-linecap:round;fill:none"/>
+            <path class="ln" d="M900 1120 L950 900"/>
+            <ellipse class="ln" cx="965" cy="810" rx="70" ry="96" transform="rotate(12 965 810)"/>
+            <path class="mv" d="M990 300 L1050 80"/>
+            <circle class="ball" cx="975" cy="340" r="38"/>
+          </svg>
+          <div class="veil"></div>
+          <div class="blk">
+            <p class="lab">Nuovi praticanti persistenti</p>
+            <p class="fig">2.600</p>
+            <p class="cap">giocatori continuativi</p>
+            <p class="sec2"><strong>376</strong>di cui da Racchette in classe</p>
+          </div>
+          <div class="fix">
+            <svg class="mono" viewBox="0 0 80 81" aria-label="OpenEconomics"><path d="M39.8 0C17.8 0 0 17.9 0 40c0 22.1 17.8 40.1 39.8 40.1 22 0 39.8-17.9 39.8-40.1C79.6 17.9 61.8 0 39.8 0Zm23.5 63.7h-47V16.4h47v47.3Z" fill="currentColor"/></svg>
+            <div class="lg"><img class="fitp" src="assets/loghi/fitp.png" alt="FITP"><img class="nitto" src="assets/loghi/nitto-atp-finals-white.png" alt="Nitto ATP Finals"></div>
+          </div>
+          <p class="stima">Stime ex ante</p>
+          <div class="layer"><span class="tc">0:09,5 – 0:12</span></div>
+          <div class="safe"></div>
+        </div>
+        <div class="info">
+          <p class="idx">Scena 05 · KPI 4 · picco <span class="chip">Da generare</span></p>
+          <dl>
+            <div><dt>On-screen</dt><dd>NUOVI PRATICANTI PERSISTENTI · <strong>2.600</strong> · giocatori continuativi · secondo dato, più piccolo ma ben visibile: <strong>376</strong> di cui da Racchette in classe</dd></div>
+            <div><dt>Visivo</dt><dd class="prompt">Smash del giocatore 2, capelli biondi, ripreso di schiena e in controluce, dal basso: il braccio e la racchetta salgono verso le luci. È il picco del crescendo: la camera sale insieme al colpo.</dd></div>
+            <div><dt>Audio</dt><dd class="prompt">Smash pieno, il colpo più forte del video. Il tappeto è al massimo.</dd></div>
+            <div><dt>Prompt</dt><dd class="prompt">Seedance 2.5, 5 s, 9:16: «Low-angle shot from behind of a tennis player with blond hair hitting a powerful overhead smash, strong backlight from arena lights, silhouette, face never visible. Camera rises with the swing, motion blur, plain dark clothing with no logos.»</dd></div>
+            <div><dt>Nota</dt><dd class="note">Il secondo dato: il brief lo scrive «di cui 376 da Racchette in classe». Qui il 376 sale a numero per farlo leggere; se si preferisce la frase intera su una riga, si cambia solo la grafica.</dd></div>
+          </dl>
+        </div>
+      </article>
+
+      <!-- ============ 6 · KPI 5 ESG ============ -->
+      <article class="beat">
+        <div class="frame">
+          <svg class="sk" viewBox="0 0 1080 1920" aria-hidden="true">
+            <defs><circle id="b" r="40" fill="#D8F23A"/></defs>
+            <g opacity=".8">
+              <use href="#b" x="140" y="1700"/><use href="#b" x="220" y="1700"/><use href="#b" x="300" y="1700"/><use href="#b" x="380" y="1700"/><use href="#b" x="460" y="1700"/><use href="#b" x="540" y="1700"/><use href="#b" x="620" y="1700"/><use href="#b" x="700" y="1700"/><use href="#b" x="780" y="1700"/><use href="#b" x="860" y="1700"/><use href="#b" x="940" y="1700"/>
+              <use href="#b" x="220" y="1632"/><use href="#b" x="300" y="1632"/><use href="#b" x="380" y="1632"/><use href="#b" x="460" y="1632"/><use href="#b" x="540" y="1632"/><use href="#b" x="620" y="1632"/><use href="#b" x="700" y="1632"/><use href="#b" x="780" y="1632"/><use href="#b" x="860" y="1632"/>
+              <use href="#b" x="300" y="1564"/><use href="#b" x="380" y="1564"/><use href="#b" x="460" y="1564"/><use href="#b" x="540" y="1564"/><use href="#b" x="620" y="1564"/><use href="#b" x="700" y="1564"/><use href="#b" x="780" y="1564"/>
+              <use href="#b" x="380" y="1496"/><use href="#b" x="460" y="1496"/><use href="#b" x="540" y="1496"/><use href="#b" x="620" y="1496"/><use href="#b" x="700" y="1496"/>
+              <use href="#b" x="460" y="1428"/><use href="#b" x="540" y="1428"/><use href="#b" x="620" y="1428"/>
+            </g>
+            <path class="mv" d="M540 300 L540 1340"/>
+            <g class="fall"><circle class="ball" cx="540" cy="1360" r="40"/></g>
+          </svg>
+          <div class="veil"></div>
+          <div class="blk">
+            <p class="lab">ESG score</p>
+            <p class="fig">89,75<span class="bar">|</span><span class="u">AA+</span></p>
+            <p class="cap">rating complessivo ponderato</p>
+          </div>
+          <div class="fix">
+            <svg class="mono" viewBox="0 0 80 81" aria-label="OpenEconomics"><path d="M39.8 0C17.8 0 0 17.9 0 40c0 22.1 17.8 40.1 39.8 40.1 22 0 39.8-17.9 39.8-40.1C79.6 17.9 61.8 0 39.8 0Zm23.5 63.7h-47V16.4h47v47.3Z" fill="currentColor"/></svg>
+            <div class="lg"><img class="fitp" src="assets/loghi/fitp.png" alt="FITP"><img class="nitto" src="assets/loghi/nitto-atp-finals-white.png" alt="Nitto ATP Finals"></div>
+          </div>
+          <p class="stima">Stime ex ante</p>
+          <div class="layer"><span class="tc">0:12 – 0:14,5</span></div>
+          <div class="safe"></div>
+        </div>
+        <div class="info">
+          <p class="idx">Scena 06 · KPI 5 <span class="chip">Da generare</span></p>
+          <dl>
+            <div><dt>On-screen</dt><dd>ESG SCORE · <strong>89,75 | AA+</strong> · rating complessivo ponderato</dd></div>
+            <div><dt>Visivo</dt><dd class="prompt">Una pallina cade dall’alto sulla cima di una montagna di palline gialle e fa l’ultimo flop. La camera si allarga lenta e mostra tutta la montagna.</dd></div>
+            <div><dt>Audio</dt><dd class="prompt">Ultimo flop, più pieno degli altri, sulla cima della montagna.</dd></div>
+            <div><dt>Prompt</dt><dd class="prompt">Seedance 2.5, 5 s, 9:16: «A single yellow tennis ball falls from above and lands on top of a large pile of yellow tennis balls on a dark indoor court floor, small bounce. Slow pull-back revealing the whole pile, dramatic top light, no logos on the balls.»</dd></div>
+            <div><dt>Nota</dt><dd class="note">Qui la palette cambia: la montagna è tutta gialla, l’unica parte del video con tanto colore pieno. Va controllato che la velatura centrale tenga leggibili numero e didascalia, e che la montagna stia sopra la fascia dei loghi o abbia una velatura sotto.</dd></div>
+          </dl>
+        </div>
+      </article>
+
+      <!-- ============ 7 · CHIUSURA ============ -->
+      <article class="beat">
+        <div class="frame">
+          <svg class="sk" viewBox="0 0 1080 1920" aria-hidden="true">
+            <g opacity=".75">
+              <circle class="ball crumble" cx="160" cy="1690" r="40" style="--dx:-80px;--dy:260px;--r:-50deg"/>
+              <circle class="ball crumble" cx="300" cy="1650" r="40" style="--dx:-40px;--dy:300px"/>
+              <circle class="ball crumble" cx="420" cy="1560" r="40" style="--dx:-60px;--dy:380px;--r:-30deg"/>
+              <circle class="ball crumble" cx="540" cy="1470" r="40" style="--dx:10px;--dy:460px"/>
+              <circle class="ball crumble" cx="660" cy="1560" r="40" style="--dx:70px;--dy:380px"/>
+              <circle class="ball crumble" cx="780" cy="1650" r="40" style="--dx:50px;--dy:300px;--r:60deg"/>
+              <circle class="ball crumble" cx="920" cy="1690" r="40" style="--dx:90px;--dy:260px"/>
+              <circle class="ball crumble" cx="480" cy="1640" r="40" style="--dx:-20px;--dy:320px"/>
+              <circle class="ball crumble" cx="600" cy="1640" r="40" style="--dx:30px;--dy:320px"/>
+            </g>
+          </svg>
+          <div class="end">
+            <img src="assets/loghi/oe-logo-white.svg" alt="OpenEconomics">
+            <p class="tag">We measure what really matters</p>
+          </div>
+          <p class="stima">Stime ex ante · Nitto ATP Finals 2026</p>
+          <div class="layer"><span class="tc">0:14,5 – 0:18,5</span></div>
+          <div class="safe"></div>
+        </div>
+        <div class="info">
+          <p class="idx">Scena 07 · Chiusura <span class="chip">Da generare</span> <span class="chip keep">Codino OE</span></p>
+          <dl>
+            <div><dt>On-screen</dt><dd>Logo OpenEconomics esteso · payoff «We measure what really matters» · in basso la riga di riferimento allo studio</dd></div>
+            <div><dt>Visivo</dt><dd class="prompt">La montagna di palline si sgretola e rotola fuori dal quadro. Le immagini sfumano su Bluette 900 pieno e il logo si stampa al centro; il payoff entra mezzo secondo dopo.</dd></div>
+            <div><dt>Audio</dt><dd class="prompt">Il tappeto si chiude sullo sgretolamento, poi silenzio breve sul logo (preferenza del brief).</dd></div>
+            <div><dt>Prompt</dt><dd class="prompt">Seedance 2.5, 5 s, 9:16: «A large pile of yellow tennis balls on a dark indoor court collapses and the balls roll out of frame in every direction, slow motion, camera static then slowly pushing in on the empty floor.»</dd></div>
+            <div><dt>Nota</dt><dd class="note">Il codino è quello fisso di tutti i video OE. I loghi FITP e Nitto qui lasciano il posto al logo OE; restano solo nella riga in basso se si vuole.</dd></div>
+          </dl>
+        </div>
+      </article>
+
+    </div>
+  </div>
+</main>
+
+<footer>
+  <div class="wrap">
+    <h2>Note di lettura</h2>
+    <ul>
+      <li><strong>Un KPI, un colpo, un suono.</strong> Ogni dato entra sul fotogramma del colpo, con lo stesso zoom verso la camera del tennis (dal 55% alla misura piena), resta per la lettura e se ne va prima del colpo dopo. I dati non si accumulano.</li>
+      <li><strong>Ordine dei KPI dalla scaletta delle scene</strong>: telespettatori, SROI, benefici sociali, praticanti, ESG. La tabella del brief li metteva in un altro ordine (benefici al 2, praticanti al 3, SROI al 4); le indicazioni su «+7,7%» e «376» valgono comunque, legate al dato e non alla posizione.</li>
+      <li><strong>Misure un po’ più grandi del reference</strong>, come chiede il brief: numero 248 px su 1080 (il tennis era a 215), etichetta 34, didascalia 42, secondo dato a 104 px in Lime. Numero bianco velato di viola (#F8F5F9), didascalia Bluette 050, etichetta Lime 400.</li>
+      <li><strong>Trattamento</strong>: duotone Bluette come il tennis, ombre su Bluette 900 e luci verso il lilla; righe del campo e rete in Bluette 050. La pallina è l’unica cosa a colori pieni, nessun altro colore caldo.</li>
+      <li><strong>Giocatori non riconoscibili</strong>: uno con capelli neri ripreso dall’alto, uno biondo di schiena in controluce. Nessun volto, nessun giocatore reale, nessun marchio sull’abbigliamento o sulla rete.</li>
+      <li><strong>Elementi fissi</strong>: monogramma OE in basso a sinistra, FITP e Nitto ATP Finals affiancati in basso a destra, a 250 px dal bordo. Sotto, in piccolo, «Stime ex ante» su tutte le scene.</li>
+      <li>Il girato è da generare con AI: sei clip Seedance 2.5 da 5 s, poi tagliate ai tempi. I prompt sono una prima stesura.</li>
+    </ul>
+
+    <h2>Da decidere prima del montaggio</h2>
+    <ul>
+      <li><strong>Logo FITP in bianco.</strong> Il file nella cartella è a colori (blu e grigio) e sul viola si legge poco: nei frame è forzato in bianco solo per l’anteprima. Serve la versione monocromatica ufficiale.</li>
+      <li><strong>Autorizzazione al marchio Nitto ATP Finals</strong>: il brief chiede di verificarla.</li>
+      <li><strong>Payoff</strong>: proposto «We measure what really matters», il codino di tutti i video OE. Il brief lo lascia da confermare.</li>
+      <li><strong>Dicitura «stima»</strong>: qui è un testo fisso in basso, «Stime ex ante». In alternativa può stare solo nell’ultima scena.</li>
+      <li><strong>Suono finale</strong>: proposto il silenzio breve sul logo. Il brief chiede anche 4–5 s di silenzio oltre il video, per un totale di circa 22 s, ma la durata massima è 20 s: va scelto uno dei due.</li>
+      <li><strong>Bollino AI</strong>: nel reference il segno in alto a sinistra è il nostro bollino di dichiarazione AI, non la filigrana di un tool. Il brief chiede di toglierlo, ma il girato sarà di nuovo generato con AI: confermare se va omesso.</li>
+      <li><strong>Immagini AI</strong>: nessuna clip è stata ancora generata. Si parte solo col via libera.</li>
+    </ul>
+    <p class="fine">OpenEconomics · Bluette #4400B3 · Lime #B9FF69 · Hedvig Letters Serif + Atkinson Hyperlegible</p>
+  </div>
+</footer>
+<script>
+document.getElementById('safeToggle').addEventListener('change', function(e){
+  document.getElementById('grid').classList.toggle('show-safe', e.target.checked);
+});
+document.getElementById('animToggle').addEventListener('change', function(e){
+  document.getElementById('grid').classList.toggle('anim', e.target.checked);
+});
+</script>
+
+</body>
+</html>
