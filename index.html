@@ -25,7 +25,9 @@
   --white:#FFFFFF;
   --num:#F8F5F9;            /* bianco appena velato di viola, dal brief */
   --black:#000000;
+  --gray-100:#F1F1F1;
   --gray-300:#D2D2D2;
+  --gray-600:#6E6E6E;
   --gray-500:#999999;
   --gray-700:#545454;
 
@@ -278,6 +280,48 @@ footer .fine{
   .beat{break-inside:avoid}
   .anim *{animation:none!important}
 }
+
+/* ── Commento per scena + PDF (come le storyboard di Rieti e Viterbo) ── */
+.toolbar .who{display:inline-flex;align-items:center;gap:8px;font-size:14px}
+.toolbar .who input{font-family:var(--sans);font-size:14px;border:1px solid var(--gray-300);padding:6px 9px;width:200px;background:var(--white)}
+.toolbar .who input:focus{outline:2px solid var(--bluette-700);outline-offset:-1px;border-color:var(--bluette-700)}
+.cmt{margin-top:16px;padding:14px 16px 16px;background:var(--gray-100);display:flex;flex-direction:column;gap:10px}
+.cmt label{font-family:var(--mono);font-size:12px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--gray-700)}
+.cmt textarea{font-family:var(--sans);font-size:15px;line-height:1.5;color:var(--black);background:var(--white);border:1px solid var(--gray-300);padding:9px 11px;width:100%;min-height:88px;resize:vertical}
+.cmt textarea:focus{outline:2px solid var(--bluette-700);outline-offset:-1px;border-color:var(--bluette-700)}
+.cmt .saved{font-family:var(--mono);font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--gray-600)}
+.toolbar .pdf-all{font-family:var(--sans);font-size:14px;font-weight:700;line-height:1.3;background:var(--bluette-700);color:var(--white);border:1px solid var(--bluette-700);padding:7px 15px;cursor:pointer;transition:background .14s}
+.toolbar .pdf-all:hover,.toolbar .pdf-all:focus-visible{background:var(--bluette-900);border-color:var(--bluette-900)}
+.toolbar .pdf-all:focus-visible,.toolbar .copy-all:focus-visible,.copy-out button:focus-visible{outline:2px solid var(--black);outline-offset:2px}
+.toolbar .copy-all,.copy-out button{font-family:var(--sans);font-size:14px;font-weight:700;line-height:1.3;background:transparent;color:var(--bluette-700);border:1px solid var(--bluette-700);padding:7px 15px;cursor:pointer;transition:background .14s}
+.toolbar .copy-all:hover,.copy-out button:hover{background:var(--bluette-050)}
+.toolbar .copied{font-family:var(--mono);font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--gray-600)}
+.copy-out{position:fixed;left:16px;right:16px;bottom:16px;z-index:50;max-width:720px;margin:0 auto;background:var(--white);border:1px solid var(--black);padding:14px;display:flex;flex-direction:column;gap:10px}
+.copy-out textarea{font-family:var(--sans);font-size:14px;line-height:1.5;height:40vh;width:100%;border:1px solid var(--gray-300);padding:9px 11px}
+.copy-out button{align-self:flex-end}
+.pdf-head,.pdf-note,.pdf-poster{display:none}
+@media print{ .cmt{display:none} }
+@page{size:A4 portrait;margin:12mm}
+@media print{
+  body.print-one{-webkit-print-color-adjust:exact;print-color-adjust:exact}
+  body.print-one .masthead,body.print-one .hero,body.print-one footer,body.print-one .board > .wrap > h2,
+  body.print-one .board > .wrap > p.lead,body.print-one .beat:not(.printing){display:none!important}
+  body.print-one .wrap{padding:0;max-width:none}
+  body.print-one .board{padding:0}
+  body.print-one .grid{display:block}
+  body.print-one .frame{width:72mm;max-width:72mm}
+  body.print-one .frame .safe{display:none}
+  body.print-one .printing .frame video{display:none}
+  body.print-one .printing .pdf-poster{display:block;position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:0}
+  body.print-one .pdf-head{display:flex;justify-content:space-between;gap:16px;border-bottom:1px solid var(--black);padding-bottom:8px;margin-bottom:12px;font-family:var(--mono);font-size:9pt;font-weight:600;letter-spacing:.1em;text-transform:uppercase}
+  body.print-one .pdf-head b{color:var(--bluette-700)}
+  body.print-one .info{margin-top:10px;padding-top:10px}
+  body.print-one .info dd{font-size:9.5pt}
+  body.print-one .beat.printing:not(.pdf-first){break-before:page}
+  body.print-one .pdf-note{display:block;margin-top:14px;padding:12px 14px;border-left:3px solid var(--bluette-700);background:var(--bluette-050);break-inside:avoid}
+  body.print-one .pdf-note p:first-child{font-family:var(--mono);font-size:9pt;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--bluette-700);margin-bottom:6px}
+  body.print-one .pdf-note p + p{font-size:11pt;line-height:1.5;white-space:pre-wrap}
+}
 </style>
 </head>
 <body>
@@ -341,6 +385,10 @@ footer .fine{
     <span class="label">Vista</span>
     <label class="toggle"><input type="checkbox" id="animToggle" checked> Anima i frame</label>
     <label class="toggle"><input type="checkbox" id="safeToggle"> Mostra area sicura 9:16</label>
+    <label class="who">Il tuo nome <input type="text" id="whoName" autocomplete="name" placeholder="per firmare i commenti"></label>
+    <button type="button" class="pdf-all" id="pdfAll">Scarica PDF dei commenti</button>
+    <button type="button" class="copy-all" id="copyAll">Copia il testo</button>
+    <span class="copied" id="copied" aria-live="polite"></span>
   </div>
 </div>
 
@@ -628,6 +676,104 @@ document.getElementById('animToggle').addEventListener('change', function(e){
     }
   });
 });
+
+/* ── Commenti: uno per scena, salvati nel browser di chi scrive; «Scarica PDF» li raccoglie tutti ── */
+(function(){
+  var store = {
+    get: function(k){ try { return localStorage.getItem(k) || ''; } catch(e){ return ''; } },
+    set: function(k, v){ try { localStorage.setItem(k, v); return true; } catch(e){ return false; } }
+  };
+  var PFX = 'oe-nitto:';
+  var who = document.getElementById('whoName');
+  who.value = store.get(PFX + 'nome');
+  who.addEventListener('input', function(){ store.set(PFX + 'nome', who.value.trim()); });
+  var today = function(){ return new Date().toLocaleDateString('it-IT', {day:'numeric', month:'long', year:'numeric'}); };
+  var beats = Array.prototype.slice.call(document.querySelectorAll('.beat'));
+  var sceneTitle = function(beat){ return beat.querySelector('.info .idx').firstChild.textContent.trim(); };
+  var copied = document.getElementById('copied');
+
+  beats.forEach(function(beat, i){
+    var short = sceneTitle(beat).split('·')[0].trim();
+    var key = PFX + 'scena-' + i, id = 'cmt-' + i;
+    var box = document.createElement('div'); box.className = 'cmt';
+    box.innerHTML = '<label for="' + id + '">Commento · ' + short + '</label>' +
+      '<textarea id="' + id + '" placeholder="Scrivi qui cosa cambiare in questa scena"></textarea>' +
+      '<span class="saved" aria-live="polite"></span>';
+    beat.appendChild(box);
+    var ta = box.querySelector('textarea'), saved = box.querySelector('.saved');
+    ta.value = store.get(key);
+    if (ta.value) saved.textContent = 'Salvato in questo browser';
+    ta.addEventListener('input', function(){
+      saved.textContent = store.set(key, ta.value) ? 'Salvato in questo browser' : 'Non salvato: scarica il PDF prima di chiudere';
+    });
+  });
+  var commented = function(){
+    return beats.filter(function(beat){ return beat.querySelector('.cmt textarea').value.trim(); });
+  };
+
+  // un solo PDF: una pagina per ogni scena commentata, con il frame, le schede e il commento
+  document.getElementById('pdfAll').addEventListener('click', function(){
+    var list = commented();
+    if (!list.length){ copied.textContent = 'Nessun commento da scaricare'; return; }
+    var name = who.value.trim(), added = [], waits = [];
+    list.forEach(function(beat, n){
+      var head = document.createElement('div'); head.className = 'pdf-head';
+      head.innerHTML = '<span></span><span><b></b></span>';
+      head.firstChild.textContent = 'Storyboard Nitto ATP Finals · commenti' + (name ? ' di ' + name : '') + ' · ' + today();
+      head.querySelector('b').textContent = sceneTitle(beat) + ' · ' + (n + 1) + '/' + list.length;
+      var note = document.createElement('div'); note.className = 'pdf-note';
+      note.innerHTML = '<p>Commento</p><p></p>';
+      note.lastChild.textContent = beat.querySelector('.cmt textarea').value.trim();
+      beat.insertBefore(head, beat.firstChild); beat.appendChild(note);
+      added.push(head, note);
+      // il video non si stampa: al suo posto il fotogramma
+      var v = beat.querySelector('.frame video');
+      if (v){
+        v.pause();
+        var img = document.createElement('img'); img.className = 'pdf-poster'; img.alt = '';
+        img.src = v.getAttribute('poster'); v.parentNode.insertBefore(img, v.nextSibling);
+        added.push(img); if (img.decode) waits.push(img.decode().catch(function(){}));
+      }
+      beat.classList.add('printing'); if (n === 0) beat.classList.add('pdf-first');
+    });
+    var oldTitle = document.title;
+    document.title = 'Nitto-storyboard-commenti' + (name ? '-' + name.replace(/\s+/g, '-') : '');   // nome del file PDF
+    document.body.classList.add('print-one');
+    var done = function(){
+      window.removeEventListener('afterprint', done);
+      document.body.classList.remove('print-one');
+      list.forEach(function(beat){ beat.classList.remove('printing', 'pdf-first'); });
+      added.forEach(function(n){ n.remove(); });
+      document.title = oldTitle;
+    };
+    window.addEventListener('afterprint', done);
+    Promise.all(waits).then(function(){ window.print(); });
+  });
+
+  // tutti i commenti in un testo solo, da incollare in una mail o in un documento
+  document.getElementById('copyAll').addEventListener('click', function(){
+    var name = who.value.trim(), parts = commented().map(function(beat){
+      return sceneTitle(beat) + '\n' + beat.querySelector('.cmt textarea').value.trim();
+    });
+    if (!parts.length){ copied.textContent = 'Nessun commento da copiare'; return; }
+    var text = 'Storyboard Nitto ATP Finals · commenti' + (name ? ' di ' + name : '') + ' · ' + today() +
+      '\n' + location.href.split('#')[0] + '\n\n' + parts.join('\n\n');
+    var fallback = function(){
+      var old = document.querySelector('.copy-out'); if (old) old.remove();
+      var p = document.createElement('div'); p.className = 'copy-out';
+      p.innerHTML = '<textarea readonly aria-label="Testo dei commenti"></textarea><button type="button">Chiudi</button>';
+      p.querySelector('textarea').value = text;
+      p.querySelector('button').addEventListener('click', function(){ p.remove(); });
+      document.body.appendChild(p); p.querySelector('textarea').select();
+      copied.textContent = 'Seleziona e copia il testo';
+    };
+    if (navigator.clipboard && window.isSecureContext){
+      navigator.clipboard.writeText(text).then(function(){
+        copied.textContent = parts.length + (parts.length === 1 ? ' commento copiato' : ' commenti copiati');
+      }, fallback);
+    } else fallback();
+  });
+})();
 </script>
 
 </body>
